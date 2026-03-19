@@ -3,6 +3,15 @@ import { Response,Request } from "express";
 import { PracticeService } from "./practiceArea.service";
 
 
+
+
+
+
+
+
+
+
+
 const createPracticeArea = async (req: Request, res: Response) => {
     try {
           const payload = req.body;
@@ -23,6 +32,9 @@ const createPracticeArea = async (req: Request, res: Response) => {
         })
   }
 }
+
+
+
 
 const getAllPracticeArea = async (req: Request, res: Response) => {
     try {
