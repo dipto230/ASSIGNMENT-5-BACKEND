@@ -4,6 +4,7 @@ import { Role, PracticeArea } from "../../../generated/prisma/client";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import { ICreateLawyerPayload } from "./user.interface";
+import AppError from "../../errorHelpers/AppError";
 
 const createLawyer = async (payload: ICreateLawyerPayload) => {
 
