@@ -389,7 +389,9 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  Client: 'Client'
+  Client: 'Client',
+  Lawyer: 'Lawyer',
+  LawyerPracticeArea: 'LawyerPracticeArea'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -405,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "practiceArea" | "user" | "session" | "account" | "verification" | "client"
+    modelProps: "practiceArea" | "user" | "session" | "account" | "verification" | "client" | "lawyer" | "lawyerPracticeArea"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -853,6 +855,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Lawyer: {
+      payload: Prisma.$LawyerPayload<ExtArgs>
+      fields: Prisma.LawyerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LawyerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LawyerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        findFirst: {
+          args: Prisma.LawyerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LawyerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        findMany: {
+          args: Prisma.LawyerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>[]
+        }
+        create: {
+          args: Prisma.LawyerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        createMany: {
+          args: Prisma.LawyerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LawyerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>[]
+        }
+        delete: {
+          args: Prisma.LawyerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        update: {
+          args: Prisma.LawyerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        deleteMany: {
+          args: Prisma.LawyerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LawyerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LawyerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>[]
+        }
+        upsert: {
+          args: Prisma.LawyerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPayload>
+        }
+        aggregate: {
+          args: Prisma.LawyerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLawyer>
+        }
+        groupBy: {
+          args: Prisma.LawyerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LawyerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LawyerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LawyerCountAggregateOutputType> | number
+        }
+      }
+    }
+    LawyerPracticeArea: {
+      payload: Prisma.$LawyerPracticeAreaPayload<ExtArgs>
+      fields: Prisma.LawyerPracticeAreaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LawyerPracticeAreaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LawyerPracticeAreaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        findFirst: {
+          args: Prisma.LawyerPracticeAreaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LawyerPracticeAreaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        findMany: {
+          args: Prisma.LawyerPracticeAreaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>[]
+        }
+        create: {
+          args: Prisma.LawyerPracticeAreaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        createMany: {
+          args: Prisma.LawyerPracticeAreaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LawyerPracticeAreaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>[]
+        }
+        delete: {
+          args: Prisma.LawyerPracticeAreaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        update: {
+          args: Prisma.LawyerPracticeAreaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        deleteMany: {
+          args: Prisma.LawyerPracticeAreaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LawyerPracticeAreaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LawyerPracticeAreaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>[]
+        }
+        upsert: {
+          args: Prisma.LawyerPracticeAreaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LawyerPracticeAreaPayload>
+        }
+        aggregate: {
+          args: Prisma.LawyerPracticeAreaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLawyerPracticeArea>
+        }
+        groupBy: {
+          args: Prisma.LawyerPracticeAreaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LawyerPracticeAreaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LawyerPracticeAreaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LawyerPracticeAreaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -986,6 +1136,39 @@ export const ClientScalarFieldEnum = {
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
+export const LawyerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  profilePhoto: 'profilePhoto',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  barRegistrationNumber: 'barRegistrationNumber',
+  experience: 'experience',
+  gender: 'gender',
+  consultationFee: 'consultationFee',
+  qualification: 'qualification',
+  currentFirm: 'currentFirm',
+  designation: 'designation',
+  averageRating: 'averageRating',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type LawyerScalarFieldEnum = (typeof LawyerScalarFieldEnum)[keyof typeof LawyerScalarFieldEnum]
+
+
+export const LawyerPracticeAreaScalarFieldEnum = {
+  lawyerId: 'lawyerId',
+  practiceAreaId: 'practiceAreaId'
+} as const
+
+export type LawyerPracticeAreaScalarFieldEnum = (typeof LawyerPracticeAreaScalarFieldEnum)[keyof typeof LawyerPracticeAreaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1092,6 +1275,34 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
+
+/**
+ * Reference to a field of type 'Gender'
+ */
+export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender[]'
+ */
+export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1193,6 +1404,8 @@ export type GlobalOmitConfig = {
   account?: Prisma.AccountOmit
   verification?: Prisma.VerificationOmit
   client?: Prisma.ClientOmit
+  lawyer?: Prisma.LawyerOmit
+  lawyerPracticeArea?: Prisma.LawyerPracticeAreaOmit
 }
 
 /* Types for Logging */

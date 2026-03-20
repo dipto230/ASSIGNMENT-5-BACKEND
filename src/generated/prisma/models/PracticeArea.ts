@@ -206,6 +206,7 @@ export type PracticeAreaWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"PracticeArea"> | Date | string
   isDeleted?: Prisma.BoolFilter<"PracticeArea"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"PracticeArea"> | Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaListRelationFilter
 }
 
 export type PracticeAreaOrderByWithRelationInput = {
@@ -217,6 +218,7 @@ export type PracticeAreaOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lawyers?: Prisma.LawyerPracticeAreaOrderByRelationAggregateInput
 }
 
 export type PracticeAreaWhereUniqueInput = Prisma.AtLeast<{
@@ -231,6 +233,7 @@ export type PracticeAreaWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"PracticeArea"> | Date | string
   isDeleted?: Prisma.BoolFilter<"PracticeArea"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"PracticeArea"> | Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaListRelationFilter
 }, "id" | "title">
 
 export type PracticeAreaOrderByWithAggregationInput = {
@@ -270,6 +273,7 @@ export type PracticeAreaCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutPracticeAreaInput
 }
 
 export type PracticeAreaUncheckedCreateInput = {
@@ -281,6 +285,7 @@ export type PracticeAreaUncheckedCreateInput = {
   updatedAt?: Date | string
   isDeleted?: boolean
   deletedAt?: Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutPracticeAreaInput
 }
 
 export type PracticeAreaUpdateInput = {
@@ -292,6 +297,7 @@ export type PracticeAreaUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaUpdateManyWithoutPracticeAreaNestedInput
 }
 
 export type PracticeAreaUncheckedUpdateInput = {
@@ -303,6 +309,7 @@ export type PracticeAreaUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lawyers?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutPracticeAreaNestedInput
 }
 
 export type PracticeAreaCreateManyInput = {
@@ -371,6 +378,11 @@ export type PracticeAreaMinOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
 }
 
+export type PracticeAreaScalarRelationFilter = {
+  is?: Prisma.PracticeAreaWhereInput
+  isNot?: Prisma.PracticeAreaWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -391,6 +403,109 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type PracticeAreaCreateNestedOneWithoutLawyersInput = {
+  create?: Prisma.XOR<Prisma.PracticeAreaCreateWithoutLawyersInput, Prisma.PracticeAreaUncheckedCreateWithoutLawyersInput>
+  connectOrCreate?: Prisma.PracticeAreaCreateOrConnectWithoutLawyersInput
+  connect?: Prisma.PracticeAreaWhereUniqueInput
+}
+
+export type PracticeAreaUpdateOneRequiredWithoutLawyersNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeAreaCreateWithoutLawyersInput, Prisma.PracticeAreaUncheckedCreateWithoutLawyersInput>
+  connectOrCreate?: Prisma.PracticeAreaCreateOrConnectWithoutLawyersInput
+  upsert?: Prisma.PracticeAreaUpsertWithoutLawyersInput
+  connect?: Prisma.PracticeAreaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeAreaUpdateToOneWithWhereWithoutLawyersInput, Prisma.PracticeAreaUpdateWithoutLawyersInput>, Prisma.PracticeAreaUncheckedUpdateWithoutLawyersInput>
+}
+
+export type PracticeAreaCreateWithoutLawyersInput = {
+  id?: string
+  title: string
+  description?: string | null
+  icon?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+}
+
+export type PracticeAreaUncheckedCreateWithoutLawyersInput = {
+  id?: string
+  title: string
+  description?: string | null
+  icon?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+}
+
+export type PracticeAreaCreateOrConnectWithoutLawyersInput = {
+  where: Prisma.PracticeAreaWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeAreaCreateWithoutLawyersInput, Prisma.PracticeAreaUncheckedCreateWithoutLawyersInput>
+}
+
+export type PracticeAreaUpsertWithoutLawyersInput = {
+  update: Prisma.XOR<Prisma.PracticeAreaUpdateWithoutLawyersInput, Prisma.PracticeAreaUncheckedUpdateWithoutLawyersInput>
+  create: Prisma.XOR<Prisma.PracticeAreaCreateWithoutLawyersInput, Prisma.PracticeAreaUncheckedCreateWithoutLawyersInput>
+  where?: Prisma.PracticeAreaWhereInput
+}
+
+export type PracticeAreaUpdateToOneWithWhereWithoutLawyersInput = {
+  where?: Prisma.PracticeAreaWhereInput
+  data: Prisma.XOR<Prisma.PracticeAreaUpdateWithoutLawyersInput, Prisma.PracticeAreaUncheckedUpdateWithoutLawyersInput>
+}
+
+export type PracticeAreaUpdateWithoutLawyersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type PracticeAreaUncheckedUpdateWithoutLawyersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+
+/**
+ * Count Type PracticeAreaCountOutputType
+ */
+
+export type PracticeAreaCountOutputType = {
+  lawyers: number
+}
+
+export type PracticeAreaCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  lawyers?: boolean | PracticeAreaCountOutputTypeCountLawyersArgs
+}
+
+/**
+ * PracticeAreaCountOutputType without action
+ */
+export type PracticeAreaCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PracticeAreaCountOutputType
+   */
+  select?: Prisma.PracticeAreaCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PracticeAreaCountOutputType without action
+ */
+export type PracticeAreaCountOutputTypeCountLawyersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LawyerPracticeAreaWhereInput
+}
 
 
 export type PracticeAreaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -402,6 +517,8 @@ export type PracticeAreaSelect<ExtArgs extends runtime.Types.Extensions.Internal
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
+  lawyers?: boolean | Prisma.PracticeArea$lawyersArgs<ExtArgs>
+  _count?: boolean | Prisma.PracticeAreaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["practiceArea"]>
 
 export type PracticeAreaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -438,10 +555,18 @@ export type PracticeAreaSelectScalar = {
 }
 
 export type PracticeAreaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "icon" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["practiceArea"]>
+export type PracticeAreaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  lawyers?: boolean | Prisma.PracticeArea$lawyersArgs<ExtArgs>
+  _count?: boolean | Prisma.PracticeAreaCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type PracticeAreaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PracticeAreaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $PracticeAreaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PracticeArea"
-  objects: {}
+  objects: {
+    lawyers: Prisma.$LawyerPracticeAreaPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
@@ -845,6 +970,7 @@ readonly fields: PracticeAreaFieldRefs;
  */
 export interface Prisma__PracticeAreaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  lawyers<T extends Prisma.PracticeArea$lawyersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeArea$lawyersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LawyerPracticeAreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -899,6 +1025,10 @@ export type PracticeAreaFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * Filter, which PracticeArea to fetch.
    */
   where: Prisma.PracticeAreaWhereUniqueInput
@@ -917,6 +1047,10 @@ export type PracticeAreaFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * Filter, which PracticeArea to fetch.
    */
   where: Prisma.PracticeAreaWhereUniqueInput
@@ -934,6 +1068,10 @@ export type PracticeAreaFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the PracticeArea
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
   /**
    * Filter, which PracticeArea to fetch.
    */
@@ -983,6 +1121,10 @@ export type PracticeAreaFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * Filter, which PracticeArea to fetch.
    */
   where?: Prisma.PracticeAreaWhereInput
@@ -1030,6 +1172,10 @@ export type PracticeAreaFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the PracticeArea
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAreas to fetch.
    */
@@ -1079,6 +1225,10 @@ export type PracticeAreaCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * The data needed to create a PracticeArea.
    */
   data: Prisma.XOR<Prisma.PracticeAreaCreateInput, Prisma.PracticeAreaUncheckedCreateInput>
@@ -1126,6 +1276,10 @@ export type PracticeAreaUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the PracticeArea
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
   /**
    * The data needed to update a PracticeArea.
    */
@@ -1193,6 +1347,10 @@ export type PracticeAreaUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * The filter to search for the PracticeArea to update in case it exists.
    */
   where: Prisma.PracticeAreaWhereUniqueInput
@@ -1219,6 +1377,10 @@ export type PracticeAreaDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
+  /**
    * Filter which PracticeArea to delete.
    */
   where: Prisma.PracticeAreaWhereUniqueInput
@@ -1239,6 +1401,30 @@ export type PracticeAreaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * PracticeArea.lawyers
+ */
+export type PracticeArea$lawyersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LawyerPracticeArea
+   */
+  select?: Prisma.LawyerPracticeAreaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LawyerPracticeArea
+   */
+  omit?: Prisma.LawyerPracticeAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LawyerPracticeAreaInclude<ExtArgs> | null
+  where?: Prisma.LawyerPracticeAreaWhereInput
+  orderBy?: Prisma.LawyerPracticeAreaOrderByWithRelationInput | Prisma.LawyerPracticeAreaOrderByWithRelationInput[]
+  cursor?: Prisma.LawyerPracticeAreaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LawyerPracticeAreaScalarFieldEnum | Prisma.LawyerPracticeAreaScalarFieldEnum[]
+}
+
+/**
  * PracticeArea without action
  */
 export type PracticeAreaDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1250,4 +1436,8 @@ export type PracticeAreaDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the PracticeArea
    */
   omit?: Prisma.PracticeAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeAreaInclude<ExtArgs> | null
 }

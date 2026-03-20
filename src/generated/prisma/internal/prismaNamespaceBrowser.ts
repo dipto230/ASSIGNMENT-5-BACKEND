@@ -56,7 +56,9 @@ export const ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  Client: 'Client'
+  Client: 'Client',
+  Lawyer: 'Lawyer',
+  LawyerPracticeArea: 'LawyerPracticeArea'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -167,6 +169,39 @@ export const ClientScalarFieldEnum = {
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
+
+
+export const LawyerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  profilePhoto: 'profilePhoto',
+  contactNumber: 'contactNumber',
+  address: 'address',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  barRegistrationNumber: 'barRegistrationNumber',
+  experience: 'experience',
+  gender: 'gender',
+  consultationFee: 'consultationFee',
+  qualification: 'qualification',
+  currentFirm: 'currentFirm',
+  designation: 'designation',
+  averageRating: 'averageRating',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type LawyerScalarFieldEnum = (typeof LawyerScalarFieldEnum)[keyof typeof LawyerScalarFieldEnum]
+
+
+export const LawyerPracticeAreaScalarFieldEnum = {
+  lawyerId: 'lawyerId',
+  practiceAreaId: 'practiceAreaId'
+} as const
+
+export type LawyerPracticeAreaScalarFieldEnum = (typeof LawyerPracticeAreaScalarFieldEnum)[keyof typeof LawyerPracticeAreaScalarFieldEnum]
 
 
 export const SortOrder = {

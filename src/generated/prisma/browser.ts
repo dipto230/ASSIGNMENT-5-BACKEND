@@ -47,3 +47,13 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Client = Prisma.ClientModel
+/**
+ * Model Lawyer
+ * 
+ */
+export type Lawyer = Prisma.LawyerModel
+/**
+ * Model LawyerPracticeArea
+ * 
+ */
+export type LawyerPracticeArea = Prisma.LawyerPracticeAreaModel
