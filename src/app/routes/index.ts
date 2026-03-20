@@ -7,6 +7,6 @@ const router = Router()
 router.use("/auth", AuthRoutes)
 router.use("/practiceArea", PracticeAreaRoutes)
 
-router.use("/lawyers", UserRoutes)
+router.use("/users", UserRoutes)
 
 export const IndexRoutes = router
