@@ -10,6 +10,7 @@ model PracticeArea {
 
   isDeleted Boolean   @default(false)
   deletedAt DateTime?
+   lawyers LawyerPracticeArea[]
 
   @@index([isDeleted], name: "idx_practice_area_isDeleted")
   @@index([title], name: "idx_practice_area_title")

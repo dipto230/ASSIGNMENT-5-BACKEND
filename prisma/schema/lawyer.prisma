@@ -1,0 +1,35 @@
+model Lawyer {
+  id String @id @default(uuid())
+
+  name          String
+  email         String    @unique
+  profilePhoto  String?
+  contactNumber String?
+  address       String?
+
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  
+  barRegistrationNumber String @unique
+  experience            Int    @default(0)
+  gender                Gender
+  consultationFee       Float
+  qualification         String
+  currentFirm           String
+  designation           String
+  averageRating         Float  @default(0.0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  practiceAreas LawyerPracticeArea[]
+
+  @@index([email], name: "idx_lawyer_email")
+  @@index([isDeleted], name: "idx_lawyer_isDeleted")
+  @@map("lawyers")
+}
