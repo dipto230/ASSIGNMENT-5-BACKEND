@@ -1,6 +1,7 @@
 import { Role, UserStatus } from "../../../generated/prisma/client";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
+import { tokenUtils } from "../../utils/token";
 
 
 interface IRegisterUserPayload {
@@ -36,10 +37,32 @@ const registerUser = async (payload: IRegisterUserPayload) => {
             return clientTx
         })
 
+         const accessToken = tokenUtils.getAccessToken({
+            userId: data.user.id,
+            role: data.user.role,
+            name: data.user.name,
+            email: data.user.email,
+            status: data.user.status,
+            isDeleted: data.user.isDeleted,
+            emailVerified: data.user.emailVerified,
+         });
+        
+        const refreshToken = tokenUtils.getRefreshToken({
+            userId: data.user.id,
+            role: data.user.role,
+            name: data.user.name,
+            email: data.user.email,
+            status: data.user.status,
+            isDeleted: data.user.isDeleted,
+            emailVerified: data.user.emailVerified,
+        });
+
 
         return {
             ...data,
-            client
+            client,
+            accessToken,
+            refreshToken
             
         }
     } catch (error) {
@@ -76,8 +99,33 @@ const loginUser = async (payload: ILoginUserPayload) => {
     if (data.user.isDeleted || data.user.status === UserStatus.DELETED) {
         throw new Error("User is deleted");
     }
+       const accessToken = tokenUtils.getAccessToken({
+        userId: data.user.id,
+        role: data.user.role,
+        name: data.user.name,
+        email: data.user.email,
+        status: data.user.status,
+        isDeleted: data.user.isDeleted,
+        emailVerified: data.user.emailVerified,
+       });
+       const refreshToken = tokenUtils.getRefreshToken({
+        userId: data.user.id,
+        role: data.user.role,
+        name: data.user.name,
+        email: data.user.email,
+        status: data.user.status,
+        isDeleted: data.user.isDeleted,
+        emailVerified: data.user.emailVerified,
+    });
 
-    return data;
+    return {
+        ...data,
+        accessToken,
+        refreshToken
+
+
+
+    };
 
 }
 

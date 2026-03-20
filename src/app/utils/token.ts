@@ -3,6 +3,7 @@ import { JwtPayload, SignOptions } from "jsonwebtoken";
 
 import { jwtUtils } from "./jwt";
 import { envVars } from "../../config/env";
+import { CookieUtils } from "./cookie";
 
 
 //Creating access token
