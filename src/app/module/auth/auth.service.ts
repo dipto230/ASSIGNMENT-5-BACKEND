@@ -1,7 +1,10 @@
 import { Role, UserStatus } from "../../../generated/prisma/client";
+import AppError from "../../errorHelpers/AppError";
+import { IRequestUser } from "../../interfaces/requestUser.interface";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import { tokenUtils } from "../../utils/token";
+import status from "http-status";
 
 
 interface IRegisterUserPayload {
@@ -129,11 +132,48 @@ const loginUser = async (payload: ILoginUserPayload) => {
 
 }
 
+const getMe = async (user: IRequestUser) => {
+    const isUserExists = await prisma.user.findUnique({
+        where: {
+            id: user.userId,
+        },
+        include: {
+            client: {
+                include: {
+                    appointments: true,
+                    consultationNotes: true,
+                    legalDocuments: true,
+                    profile: true, 
+                }
+            },
+            lawyer: {
+                include: {
+                    practiceAreas: {
+                        include: {
+                            practiceArea: true
+                        }
+                    },
+                    appointments: true,
+                    consultationNotes: true,
+                    lawyerSchedules: true,
+                }
+            },
+            admin: true,
+        }
+    })
+
+    if (!isUserExists) {
+        throw new AppError(status.NOT_FOUND, "User not found");
+    }
+
+    return isUserExists;
+}
 
 
 
 
 export const AuthService = {
     registerUser,
-    loginUser
+    loginUser,
+    getMe
 };
