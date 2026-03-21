@@ -16,6 +16,7 @@ model User {
   accounts           Account[]
   client             Client?
   lawyer             Lawyer?
+   admin              Admin?
 
   @@unique([email])
   @@map("user")

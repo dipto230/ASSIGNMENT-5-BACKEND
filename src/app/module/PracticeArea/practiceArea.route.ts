@@ -5,9 +5,9 @@ import { Role } from "../../../generated/prisma/enums";
 
 const router = Router()
 
-router.post('/', PracticeAreaController.createPracticeArea)
-router.get('/',checkAuth(Role.ADMIN,Role.LAWYER, Role.SUPER_ADMIN), PracticeAreaController.getAllPracticeArea)
-router.delete('/:id', PracticeAreaController.deletePracticeArea)
+router.post('/',checkAuth(Role.ADMIN, Role.SUPER_ADMIN), PracticeAreaController.createPracticeArea)
+router.get('/', PracticeAreaController.getAllPracticeArea)
+router.delete('/:id',checkAuth(Role.ADMIN, Role.SUPER_ADMIN), PracticeAreaController.deletePracticeArea)
 
 
 export const PracticeAreaRoutes = router

@@ -12,6 +12,10 @@ model Client {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  appointments Appointment[]
+  profile ClientProfile?
+  legalDocuments LegalDocument[]
+  consultationNotes ConsultationNote[]
 
   // relation
   userId String @unique

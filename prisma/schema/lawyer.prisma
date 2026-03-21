@@ -28,6 +28,9 @@ model Lawyer {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   practiceAreas LawyerPracticeArea[]
+  lawyerSchedules  LawyerSchedules[]
+  appointments Appointment[]
+  consultationNotes ConsultationNote[]
 
   @@index([email], name: "idx_lawyer_email")
   @@index([isDeleted], name: "idx_lawyer_isDeleted")

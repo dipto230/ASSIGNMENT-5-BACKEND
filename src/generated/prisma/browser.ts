@@ -23,6 +23,16 @@ export * from './enums';
  */
 export type PracticeArea = Prisma.PracticeAreaModel
 /**
+ * Model Admin
+ * 
+ */
+export type Admin = Prisma.AdminModel
+/**
+ * Model Appointment
+ * 
+ */
+export type Appointment = Prisma.AppointmentModel
+/**
  * Model User
  * 
  */
@@ -48,6 +58,16 @@ export type Verification = Prisma.VerificationModel
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model ClientProfile
+ * 
+ */
+export type ClientProfile = Prisma.ClientProfileModel
+/**
+ * Model ConsultationNote
+ * 
+ */
+export type ConsultationNote = Prisma.ConsultationNoteModel
+/**
  * Model Lawyer
  * 
  */
@@ -57,3 +77,23 @@ export type Lawyer = Prisma.LawyerModel
  * 
  */
 export type LawyerPracticeArea = Prisma.LawyerPracticeAreaModel
+/**
+ * Model LawyerSchedules
+ * 
+ */
+export type LawyerSchedules = Prisma.LawyerSchedulesModel
+/**
+ * Model LegalDocument
+ * 
+ */
+export type LegalDocument = Prisma.LegalDocumentModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
+ * Model Schedule
+ * 
+ */
+export type Schedule = Prisma.ScheduleModel

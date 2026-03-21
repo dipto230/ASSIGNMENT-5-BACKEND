@@ -1,0 +1,18 @@
+model LawyerSchedules {
+  lawyerId String
+  lawyer   Lawyer @relation(fields: [lawyerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  scheduleId String
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  isBooked  Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([lawyerId, scheduleId])
+  @@index([lawyerId])
+  @@index([scheduleId])
+
+  @@map("lawyer_schedules")
+}

@@ -1,0 +1,15 @@
+model LegalDocument {
+  id String @id @default(uuid(7))
+
+  documentName String
+  documentLink String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
+  @@map("legal_documents")
+}

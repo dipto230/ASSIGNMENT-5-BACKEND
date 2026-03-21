@@ -52,13 +52,21 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   PracticeArea: 'PracticeArea',
+  Admin: 'Admin',
+  Appointment: 'Appointment',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
   Client: 'Client',
+  ClientProfile: 'ClientProfile',
+  ConsultationNote: 'ConsultationNote',
   Lawyer: 'Lawyer',
-  LawyerPracticeArea: 'LawyerPracticeArea'
+  LawyerPracticeArea: 'LawyerPracticeArea',
+  LawyerSchedules: 'LawyerSchedules',
+  LegalDocument: 'LegalDocument',
+  Payment: 'Payment',
+  Schedule: 'Schedule'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -89,6 +97,38 @@ export const PracticeAreaScalarFieldEnum = {
 } as const
 
 export type PracticeAreaScalarFieldEnum = (typeof PracticeAreaScalarFieldEnum)[keyof typeof PracticeAreaScalarFieldEnum]
+
+
+export const AdminScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  profilePhoto: 'profilePhoto',
+  contactNumber: 'contactNumber',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  userId: 'userId'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const AppointmentScalarFieldEnum = {
+  id: 'id',
+  videoCallingId: 'videoCallingId',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clientId: 'clientId',
+  lawyerId: 'lawyerId',
+  scheduleId: 'scheduleId',
+  review: 'review'
+} as const
+
+export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -171,6 +211,38 @@ export const ClientScalarFieldEnum = {
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
+export const ClientProfileScalarFieldEnum = {
+  id: 'id',
+  occupation: 'occupation',
+  companyName: 'companyName',
+  address: 'address',
+  dateOfBirth: 'dateOfBirth',
+  nationalId: 'nationalId',
+  emergencyContact: 'emergencyContact',
+  legalHistory: 'legalHistory',
+  preferredLanguage: 'preferredLanguage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clientId: 'clientId'
+} as const
+
+export type ClientProfileScalarFieldEnum = (typeof ClientProfileScalarFieldEnum)[keyof typeof ClientProfileScalarFieldEnum]
+
+
+export const ConsultationNoteScalarFieldEnum = {
+  id: 'id',
+  followUpDate: 'followUpDate',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  appointmentId: 'appointmentId',
+  clientId: 'clientId',
+  lawyerId: 'lawyerId'
+} as const
+
+export type ConsultationNoteScalarFieldEnum = (typeof ConsultationNoteScalarFieldEnum)[keyof typeof ConsultationNoteScalarFieldEnum]
+
+
 export const LawyerScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -204,12 +276,70 @@ export const LawyerPracticeAreaScalarFieldEnum = {
 export type LawyerPracticeAreaScalarFieldEnum = (typeof LawyerPracticeAreaScalarFieldEnum)[keyof typeof LawyerPracticeAreaScalarFieldEnum]
 
 
+export const LawyerSchedulesScalarFieldEnum = {
+  lawyerId: 'lawyerId',
+  scheduleId: 'scheduleId',
+  isBooked: 'isBooked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LawyerSchedulesScalarFieldEnum = (typeof LawyerSchedulesScalarFieldEnum)[keyof typeof LawyerSchedulesScalarFieldEnum]
+
+
+export const LegalDocumentScalarFieldEnum = {
+  id: 'id',
+  documentName: 'documentName',
+  documentLink: 'documentLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  clientId: 'clientId'
+} as const
+
+export type LegalDocumentScalarFieldEnum = (typeof LegalDocumentScalarFieldEnum)[keyof typeof LegalDocumentScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  transactionId: 'transactionId',
+  status: 'status',
+  paymentGatewayData: 'paymentGatewayData',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  appointmentId: 'appointmentId'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const ScheduleScalarFieldEnum = {
+  id: 'id',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -226,4 +356,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
