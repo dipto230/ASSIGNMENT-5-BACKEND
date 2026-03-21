@@ -7,6 +7,7 @@ import { IUpdateAdminPayload } from "./admin.interface";
 import { IRequestUser } from "../../interfaces/requestUser.interface";
 
 
+
 const getAllAdmins = async () => {
     const admins = await prisma.admin.findMany({
         include: {
@@ -29,7 +30,7 @@ const getAdminById = async (id: string) => {
 }
 
 const updateAdmin = async (id: string, payload: IUpdateAdminPayload) => {
-    //TODO: Validate who is updating the admin user. Only super admin can update admin user and only super admin can update super admin user but admin user cannot update super admin user
+    
 
     const isAdminExist = await prisma.admin.findUnique({
         where: {
@@ -55,9 +56,9 @@ const updateAdmin = async (id: string, payload: IUpdateAdminPayload) => {
     return updatedAdmin;
 }
 
-//soft delete admin user by setting isDeleted to true and also delete the user session and account
+
 const deleteAdmin = async (id: string, user : IRequestUser) => {
-    //TODO: Validate who is deleting the admin user. Only super admin can delete admin user and only super admin can delete super admin user but admin user cannot delete super admin user
+    
 
 
     const isAdminExist = await prisma.admin.findUnique({
@@ -88,7 +89,7 @@ const deleteAdmin = async (id: string, user : IRequestUser) => {
             data: {
                 isDeleted: true,
                 deletedAt: new Date(),
-                status: UserStatus.DELETED // Optional: you may also want to block the user
+                status: UserStatus.DELETED 
             },
         })
 
@@ -109,9 +110,12 @@ const deleteAdmin = async (id: string, user : IRequestUser) => {
     return result;
 }
 
+
+
 export const AdminService = {
     getAllAdmins,
     getAdminById,
     updateAdmin,
     deleteAdmin,
+    
 }
