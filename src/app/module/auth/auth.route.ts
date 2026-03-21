@@ -8,4 +8,5 @@ router.post("/register", AuthController.registerUser)
 router.post("/login", AuthController.loginUser)
 router.get("/me", checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.LAWYER, Role.USER), AuthController.getMe)
 router.post("/refresh-token", AuthController.getNewToken)
+router.post("/change-password", checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.USER, Role.LAWYER), AuthController.changePassword)
 export const AuthRoutes = router;
