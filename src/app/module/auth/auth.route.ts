@@ -11,4 +11,6 @@ router.post("/refresh-token", AuthController.getNewToken)
 router.post("/change-password", checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.USER, Role.LAWYER), AuthController.changePassword)
 router.post("/logout", checkAuth(Role.ADMIN, Role.SUPER_ADMIN, Role.USER, Role.LAWYER), AuthController.logoutUser)
 router.post("/verify-email", AuthController.verifyEmail)
+router.post("/forget-password", AuthController.forgetPassword)
+router.post("/reset-password", AuthController.resetPassword)
 export const AuthRoutes = router;
