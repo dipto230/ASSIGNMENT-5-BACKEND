@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Login</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px 50px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 320px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .text {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .error {
+            color: #ffb3b3;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀 Connecting to Google</div>
+        <div class="spinner"></div>
+        <p class="text">Please wait while we redirect you...</p>
+    </div>
+</body>
+
+<script>
+    (
+        async () => {
+            try {
+                const response = await fetch("<%= betterAuthUrl %>/api/auth/sign-in/social", {
+                    method : "POST",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                    credentials : "include",
+                    body: JSON.stringify({
+                        provider : "google",
+                        callbackURL: "<%= callbackURL %>"
+                    })
+                })
+
+                const data = await response.json();
+
+                if(data.url){
+                    window.location.href = data.url
+                }else{
+                    document.body.innerHTML = `
+                    <div class="container">
+                        <div class="logo">❌ Error</div>
+                        <p class="text">
+                            Error Occurred While Redirecting To Google.
+                        </p>
+                        <p class="error">Please Try Again Later.</p>
+                    </div>`
+                }
+            } catch (error) {
+                document.body.innerHTML = `
+                <div class="container">
+                    <div class="logo">❌ Error</div>
+                    <p class="text">
+                        Error Occurred While Redirecting To Google.
+                    </p>
+                    <p class="error">${error.message}</p>
+                </div>`
+            }
+        }
+    )()
+</script>
+</html>
