@@ -28,7 +28,7 @@ const storage = new CloudinaryStorage({
 
 
         return {
-            folder : `ph-healthcare/${folder}`,
+            folder : `assignment-5/${folder}`,
             public_id: uniqueName,
             resource_type : "auto"
         }
