@@ -47,7 +47,7 @@ enum DayOfWeek {
   SATURDAY
 }
 
-enum Review {
+enum ReviewRating  {
   ONE
   TWO
   THREE

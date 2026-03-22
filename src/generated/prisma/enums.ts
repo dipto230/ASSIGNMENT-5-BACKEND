@@ -77,7 +77,7 @@ export const DayOfWeek = {
 export type DayOfWeek = (typeof DayOfWeek)[keyof typeof DayOfWeek]
 
 
-export const Review = {
+export const ReviewRating = {
   ONE: 'ONE',
   TWO: 'TWO',
   THREE: 'THREE',
@@ -85,4 +85,4 @@ export const Review = {
   FIVE: 'FIVE'
 } as const
 
-export type Review = (typeof Review)[keyof typeof Review]
+export type ReviewRating = (typeof ReviewRating)[keyof typeof ReviewRating]

@@ -162,13 +162,6 @@ export type EnumPaymentStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
 }
 
-export type EnumReviewNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.Review | Prisma.EnumReviewFieldRefInput<$PrismaModel> | null
-  in?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel> | $Enums.Review | null
-}
-
 export type EnumAppointmentStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AppointmentStatus | Prisma.EnumAppointmentStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
@@ -187,16 +180,6 @@ export type EnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
-}
-
-export type EnumReviewNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Review | Prisma.EnumReviewFieldRefInput<$PrismaModel> | null
-  in?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumReviewNullableWithAggregatesFilter<$PrismaModel> | $Enums.Review | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel>
 }
 
 export type EnumRoleFilter<$PrismaModel = never> = {
@@ -516,13 +499,6 @@ export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
 }
 
-export type NestedEnumReviewNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.Review | Prisma.EnumReviewFieldRefInput<$PrismaModel> | null
-  in?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel> | $Enums.Review | null
-}
-
 export type NestedEnumAppointmentStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AppointmentStatus | Prisma.EnumAppointmentStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
@@ -541,16 +517,6 @@ export type NestedEnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
-}
-
-export type NestedEnumReviewNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.Review | Prisma.EnumReviewFieldRefInput<$PrismaModel> | null
-  in?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.Review[] | Prisma.ListEnumReviewFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumReviewNullableWithAggregatesFilter<$PrismaModel> | $Enums.Review | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumReviewNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumRoleFilter<$PrismaModel = never> = {

@@ -66,6 +66,7 @@ export const ModelName = {
   LawyerSchedules: 'LawyerSchedules',
   LegalDocument: 'LegalDocument',
   Payment: 'Payment',
+  Review: 'Review',
   Schedule: 'Schedule'
 } as const
 
@@ -124,8 +125,7 @@ export const AppointmentScalarFieldEnum = {
   updatedAt: 'updatedAt',
   clientId: 'clientId',
   lawyerId: 'lawyerId',
-  scheduleId: 'scheduleId',
-  review: 'review'
+  scheduleId: 'scheduleId'
 } as const
 
 export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
@@ -311,6 +311,20 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  appointmentId: 'appointmentId',
+  clientId: 'clientId',
+  lawyerId: 'lawyerId'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
 export const ScheduleScalarFieldEnum = {

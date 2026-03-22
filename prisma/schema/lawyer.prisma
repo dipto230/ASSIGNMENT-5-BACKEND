@@ -26,6 +26,7 @@ model Lawyer {
   // relations
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    reviews Review[]
 
   practiceAreas LawyerPracticeArea[]
   lawyerSchedules  LawyerSchedules[]

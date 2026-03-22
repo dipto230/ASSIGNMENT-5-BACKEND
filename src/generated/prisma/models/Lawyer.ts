@@ -337,6 +337,7 @@ export type LawyerWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Lawyer"> | Date | string
   userId?: Prisma.StringFilter<"Lawyer"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  reviews?: Prisma.ReviewListRelationFilter
   practiceAreas?: Prisma.LawyerPracticeAreaListRelationFilter
   lawyerSchedules?: Prisma.LawyerSchedulesListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
@@ -364,6 +365,7 @@ export type LawyerOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
   practiceAreas?: Prisma.LawyerPracticeAreaOrderByRelationAggregateInput
   lawyerSchedules?: Prisma.LawyerSchedulesOrderByRelationAggregateInput
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
@@ -394,6 +396,7 @@ export type LawyerWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Lawyer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lawyer"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  reviews?: Prisma.ReviewListRelationFilter
   practiceAreas?: Prisma.LawyerPracticeAreaListRelationFilter
   lawyerSchedules?: Prisma.LawyerSchedulesListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
@@ -472,6 +475,7 @@ export type LawyerCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
@@ -498,6 +502,7 @@ export type LawyerUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
@@ -524,6 +529,7 @@ export type LawyerUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
@@ -550,6 +556,7 @@ export type LawyerUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
@@ -817,6 +824,20 @@ export type LawyerUpdateOneRequiredWithoutLawyerSchedulesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LawyerUpdateToOneWithWhereWithoutLawyerSchedulesInput, Prisma.LawyerUpdateWithoutLawyerSchedulesInput>, Prisma.LawyerUncheckedUpdateWithoutLawyerSchedulesInput>
 }
 
+export type LawyerCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.LawyerCreateWithoutReviewsInput, Prisma.LawyerUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.LawyerCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.LawyerWhereUniqueInput
+}
+
+export type LawyerUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.LawyerCreateWithoutReviewsInput, Prisma.LawyerUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.LawyerCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.LawyerUpsertWithoutReviewsInput
+  connect?: Prisma.LawyerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LawyerUpdateToOneWithWhereWithoutReviewsInput, Prisma.LawyerUpdateWithoutReviewsInput>, Prisma.LawyerUncheckedUpdateWithoutReviewsInput>
+}
+
 export type LawyerCreateWithoutAppointmentsInput = {
   id?: string
   name: string
@@ -837,6 +858,7 @@ export type LawyerCreateWithoutAppointmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutLawyerInput
@@ -862,6 +884,7 @@ export type LawyerUncheckedCreateWithoutAppointmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutLawyerInput
@@ -903,6 +926,7 @@ export type LawyerUpdateWithoutAppointmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutLawyerNestedInput
@@ -928,6 +952,7 @@ export type LawyerUncheckedUpdateWithoutAppointmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutLawyerNestedInput
@@ -952,6 +977,7 @@ export type LawyerCreateWithoutUserInput = {
   averageRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
@@ -977,6 +1003,7 @@ export type LawyerUncheckedCreateWithoutUserInput = {
   averageRating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
@@ -1018,6 +1045,7 @@ export type LawyerUpdateWithoutUserInput = {
   averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
@@ -1043,6 +1071,7 @@ export type LawyerUncheckedUpdateWithoutUserInput = {
   averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
@@ -1069,6 +1098,7 @@ export type LawyerCreateWithoutConsultationNotesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
@@ -1094,6 +1124,7 @@ export type LawyerUncheckedCreateWithoutConsultationNotesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
@@ -1135,6 +1166,7 @@ export type LawyerUpdateWithoutConsultationNotesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
@@ -1160,6 +1192,7 @@ export type LawyerUncheckedUpdateWithoutConsultationNotesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
@@ -1185,6 +1218,7 @@ export type LawyerCreateWithoutPracticeAreasInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutLawyerInput
@@ -1210,6 +1244,7 @@ export type LawyerUncheckedCreateWithoutPracticeAreasInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutLawyerInput
@@ -1251,6 +1286,7 @@ export type LawyerUpdateWithoutPracticeAreasInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutLawyerNestedInput
@@ -1276,6 +1312,7 @@ export type LawyerUncheckedUpdateWithoutPracticeAreasInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutLawyerNestedInput
@@ -1301,6 +1338,7 @@ export type LawyerCreateWithoutLawyerSchedulesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutLawyerInput
@@ -1326,6 +1364,7 @@ export type LawyerUncheckedCreateWithoutLawyerSchedulesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutLawyerInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutLawyerInput
@@ -1367,6 +1406,7 @@ export type LawyerUpdateWithoutLawyerSchedulesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutLawyerNestedInput
@@ -1392,7 +1432,128 @@ export type LawyerUncheckedUpdateWithoutLawyerSchedulesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutLawyerNestedInput
   practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
+  consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutLawyerNestedInput
+}
+
+export type LawyerCreateWithoutReviewsInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  contactNumber?: string | null
+  address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  barRegistrationNumber: string
+  experience?: number
+  gender: $Enums.Gender
+  consultationFee: number
+  qualification: string
+  currentFirm: string
+  designation: string
+  averageRating?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutLawyerInput
+  practiceAreas?: Prisma.LawyerPracticeAreaCreateNestedManyWithoutLawyerInput
+  lawyerSchedules?: Prisma.LawyerSchedulesCreateNestedManyWithoutLawyerInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutLawyerInput
+  consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutLawyerInput
+}
+
+export type LawyerUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  contactNumber?: string | null
+  address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  barRegistrationNumber: string
+  experience?: number
+  gender: $Enums.Gender
+  consultationFee: number
+  qualification: string
+  currentFirm: string
+  designation: string
+  averageRating?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  practiceAreas?: Prisma.LawyerPracticeAreaUncheckedCreateNestedManyWithoutLawyerInput
+  lawyerSchedules?: Prisma.LawyerSchedulesUncheckedCreateNestedManyWithoutLawyerInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutLawyerInput
+  consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutLawyerInput
+}
+
+export type LawyerCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.LawyerWhereUniqueInput
+  create: Prisma.XOR<Prisma.LawyerCreateWithoutReviewsInput, Prisma.LawyerUncheckedCreateWithoutReviewsInput>
+}
+
+export type LawyerUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.LawyerUpdateWithoutReviewsInput, Prisma.LawyerUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.LawyerCreateWithoutReviewsInput, Prisma.LawyerUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.LawyerWhereInput
+}
+
+export type LawyerUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.LawyerWhereInput
+  data: Prisma.XOR<Prisma.LawyerUpdateWithoutReviewsInput, Prisma.LawyerUncheckedUpdateWithoutReviewsInput>
+}
+
+export type LawyerUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  barRegistrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  consultationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  qualification?: Prisma.StringFieldUpdateOperationsInput | string
+  currentFirm?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutLawyerNestedInput
+  practiceAreas?: Prisma.LawyerPracticeAreaUpdateManyWithoutLawyerNestedInput
+  lawyerSchedules?: Prisma.LawyerSchedulesUpdateManyWithoutLawyerNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutLawyerNestedInput
+  consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutLawyerNestedInput
+}
+
+export type LawyerUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  barRegistrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  consultationFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  qualification?: Prisma.StringFieldUpdateOperationsInput | string
+  currentFirm?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  practiceAreas?: Prisma.LawyerPracticeAreaUncheckedUpdateManyWithoutLawyerNestedInput
+  lawyerSchedules?: Prisma.LawyerSchedulesUncheckedUpdateManyWithoutLawyerNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutLawyerNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutLawyerNestedInput
 }
@@ -1403,6 +1564,7 @@ export type LawyerUncheckedUpdateWithoutLawyerSchedulesInput = {
  */
 
 export type LawyerCountOutputType = {
+  reviews: number
   practiceAreas: number
   lawyerSchedules: number
   appointments: number
@@ -1410,6 +1572,7 @@ export type LawyerCountOutputType = {
 }
 
 export type LawyerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  reviews?: boolean | LawyerCountOutputTypeCountReviewsArgs
   practiceAreas?: boolean | LawyerCountOutputTypeCountPracticeAreasArgs
   lawyerSchedules?: boolean | LawyerCountOutputTypeCountLawyerSchedulesArgs
   appointments?: boolean | LawyerCountOutputTypeCountAppointmentsArgs
@@ -1424,6 +1587,13 @@ export type LawyerCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the LawyerCountOutputType
    */
   select?: Prisma.LawyerCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * LawyerCountOutputType without action
+ */
+export type LawyerCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
 }
 
 /**
@@ -1476,6 +1646,7 @@ export type LawyerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  reviews?: boolean | Prisma.Lawyer$reviewsArgs<ExtArgs>
   practiceAreas?: boolean | Prisma.Lawyer$practiceAreasArgs<ExtArgs>
   lawyerSchedules?: boolean | Prisma.Lawyer$lawyerSchedulesArgs<ExtArgs>
   appointments?: boolean | Prisma.Lawyer$appointmentsArgs<ExtArgs>
@@ -1554,6 +1725,7 @@ export type LawyerSelectScalar = {
 export type LawyerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "profilePhoto" | "contactNumber" | "address" | "isDeleted" | "deletedAt" | "barRegistrationNumber" | "experience" | "gender" | "consultationFee" | "qualification" | "currentFirm" | "designation" | "averageRating" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["lawyer"]>
 export type LawyerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  reviews?: boolean | Prisma.Lawyer$reviewsArgs<ExtArgs>
   practiceAreas?: boolean | Prisma.Lawyer$practiceAreasArgs<ExtArgs>
   lawyerSchedules?: boolean | Prisma.Lawyer$lawyerSchedulesArgs<ExtArgs>
   appointments?: boolean | Prisma.Lawyer$appointmentsArgs<ExtArgs>
@@ -1571,6 +1743,7 @@ export type $LawyerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Lawyer"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
     practiceAreas: Prisma.$LawyerPracticeAreaPayload<ExtArgs>[]
     lawyerSchedules: Prisma.$LawyerSchedulesPayload<ExtArgs>[]
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
@@ -1991,6 +2164,7 @@ readonly fields: LawyerFieldRefs;
 export interface Prisma__LawyerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  reviews<T extends Prisma.Lawyer$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lawyer$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   practiceAreas<T extends Prisma.Lawyer$practiceAreasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lawyer$practiceAreasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LawyerPracticeAreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lawyerSchedules<T extends Prisma.Lawyer$lawyerSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lawyer$lawyerSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LawyerSchedulesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appointments<T extends Prisma.Lawyer$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lawyer$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2441,6 +2615,30 @@ export type LawyerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Lawyers to delete.
    */
   limit?: number
+}
+
+/**
+ * Lawyer.reviews
+ */
+export type Lawyer$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

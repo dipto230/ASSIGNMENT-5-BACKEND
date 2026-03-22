@@ -117,6 +117,11 @@ export type LegalDocument = Prisma.LegalDocumentModel
  */
 export type Payment = Prisma.PaymentModel
 /**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
+/**
  * Model Schedule
  * 
  */

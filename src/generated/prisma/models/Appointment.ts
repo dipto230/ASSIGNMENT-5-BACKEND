@@ -34,7 +34,6 @@ export type AppointmentMinAggregateOutputType = {
   clientId: string | null
   lawyerId: string | null
   scheduleId: string | null
-  review: $Enums.Review | null
 }
 
 export type AppointmentMaxAggregateOutputType = {
@@ -47,7 +46,6 @@ export type AppointmentMaxAggregateOutputType = {
   clientId: string | null
   lawyerId: string | null
   scheduleId: string | null
-  review: $Enums.Review | null
 }
 
 export type AppointmentCountAggregateOutputType = {
@@ -60,7 +58,6 @@ export type AppointmentCountAggregateOutputType = {
   clientId: number
   lawyerId: number
   scheduleId: number
-  review: number
   _all: number
 }
 
@@ -75,7 +72,6 @@ export type AppointmentMinAggregateInputType = {
   clientId?: true
   lawyerId?: true
   scheduleId?: true
-  review?: true
 }
 
 export type AppointmentMaxAggregateInputType = {
@@ -88,7 +84,6 @@ export type AppointmentMaxAggregateInputType = {
   clientId?: true
   lawyerId?: true
   scheduleId?: true
-  review?: true
 }
 
 export type AppointmentCountAggregateInputType = {
@@ -101,7 +96,6 @@ export type AppointmentCountAggregateInputType = {
   clientId?: true
   lawyerId?: true
   scheduleId?: true
-  review?: true
   _all?: true
 }
 
@@ -187,7 +181,6 @@ export type AppointmentGroupByOutputType = {
   clientId: string
   lawyerId: string
   scheduleId: string
-  review: $Enums.Review | null
   _count: AppointmentCountAggregateOutputType | null
   _min: AppointmentMinAggregateOutputType | null
   _max: AppointmentMaxAggregateOutputType | null
@@ -221,11 +214,11 @@ export type AppointmentWhereInput = {
   clientId?: Prisma.StringFilter<"Appointment"> | string
   lawyerId?: Prisma.StringFilter<"Appointment"> | string
   scheduleId?: Prisma.StringFilter<"Appointment"> | string
-  review?: Prisma.EnumReviewNullableFilter<"Appointment"> | $Enums.Review | null
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   lawyer?: Prisma.XOR<Prisma.LawyerScalarRelationFilter, Prisma.LawyerWhereInput>
   schedule?: Prisma.XOR<Prisma.ScheduleScalarRelationFilter, Prisma.ScheduleWhereInput>
   consultationNote?: Prisma.XOR<Prisma.ConsultationNoteNullableScalarRelationFilter, Prisma.ConsultationNoteWhereInput> | null
+  review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }
 
@@ -239,11 +232,11 @@ export type AppointmentOrderByWithRelationInput = {
   clientId?: Prisma.SortOrder
   lawyerId?: Prisma.SortOrder
   scheduleId?: Prisma.SortOrder
-  review?: Prisma.SortOrderInput | Prisma.SortOrder
   client?: Prisma.ClientOrderByWithRelationInput
   lawyer?: Prisma.LawyerOrderByWithRelationInput
   schedule?: Prisma.ScheduleOrderByWithRelationInput
   consultationNote?: Prisma.ConsultationNoteOrderByWithRelationInput
+  review?: Prisma.ReviewOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
 }
 
@@ -260,11 +253,11 @@ export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   clientId?: Prisma.StringFilter<"Appointment"> | string
   lawyerId?: Prisma.StringFilter<"Appointment"> | string
   scheduleId?: Prisma.StringFilter<"Appointment"> | string
-  review?: Prisma.EnumReviewNullableFilter<"Appointment"> | $Enums.Review | null
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   lawyer?: Prisma.XOR<Prisma.LawyerScalarRelationFilter, Prisma.LawyerWhereInput>
   schedule?: Prisma.XOR<Prisma.ScheduleScalarRelationFilter, Prisma.ScheduleWhereInput>
   consultationNote?: Prisma.XOR<Prisma.ConsultationNoteNullableScalarRelationFilter, Prisma.ConsultationNoteWhereInput> | null
+  review?: Prisma.XOR<Prisma.ReviewNullableScalarRelationFilter, Prisma.ReviewWhereInput> | null
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }, "id">
 
@@ -278,7 +271,6 @@ export type AppointmentOrderByWithAggregationInput = {
   clientId?: Prisma.SortOrder
   lawyerId?: Prisma.SortOrder
   scheduleId?: Prisma.SortOrder
-  review?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AppointmentCountOrderByAggregateInput
   _max?: Prisma.AppointmentMaxOrderByAggregateInput
   _min?: Prisma.AppointmentMinOrderByAggregateInput
@@ -297,7 +289,6 @@ export type AppointmentScalarWhereWithAggregatesInput = {
   clientId?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   lawyerId?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   scheduleId?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
-  review?: Prisma.EnumReviewNullableWithAggregatesFilter<"Appointment"> | $Enums.Review | null
 }
 
 export type AppointmentCreateInput = {
@@ -307,11 +298,11 @@ export type AppointmentCreateInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
   lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
   schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
   consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
 }
 
@@ -325,8 +316,8 @@ export type AppointmentUncheckedCreateInput = {
   clientId: string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
@@ -337,11 +328,11 @@ export type AppointmentUpdateInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
   lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
   schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
   consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -355,8 +346,8 @@ export type AppointmentUncheckedUpdateInput = {
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -370,7 +361,6 @@ export type AppointmentCreateManyInput = {
   clientId: string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
 }
 
 export type AppointmentUpdateManyMutationInput = {
@@ -380,7 +370,6 @@ export type AppointmentUpdateManyMutationInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
 }
 
 export type AppointmentUncheckedUpdateManyInput = {
@@ -393,7 +382,6 @@ export type AppointmentUncheckedUpdateManyInput = {
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
 }
 
 export type AppointmentCountOrderByAggregateInput = {
@@ -406,7 +394,6 @@ export type AppointmentCountOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   lawyerId?: Prisma.SortOrder
   scheduleId?: Prisma.SortOrder
-  review?: Prisma.SortOrder
 }
 
 export type AppointmentMaxOrderByAggregateInput = {
@@ -419,7 +406,6 @@ export type AppointmentMaxOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   lawyerId?: Prisma.SortOrder
   scheduleId?: Prisma.SortOrder
-  review?: Prisma.SortOrder
 }
 
 export type AppointmentMinOrderByAggregateInput = {
@@ -432,7 +418,6 @@ export type AppointmentMinOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   lawyerId?: Prisma.SortOrder
   scheduleId?: Prisma.SortOrder
-  review?: Prisma.SortOrder
 }
 
 export type AppointmentListRelationFilter = {
@@ -456,10 +441,6 @@ export type EnumAppointmentStatusFieldUpdateOperationsInput = {
 
 export type EnumPaymentStatusFieldUpdateOperationsInput = {
   set?: $Enums.PaymentStatus
-}
-
-export type NullableEnumReviewFieldUpdateOperationsInput = {
-  set?: $Enums.Review | null
 }
 
 export type AppointmentCreateNestedManyWithoutClientInput = {
@@ -574,6 +555,20 @@ export type AppointmentUpdateOneRequiredWithoutPaymentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AppointmentUpdateToOneWithWhereWithoutPaymentInput, Prisma.AppointmentUpdateWithoutPaymentInput>, Prisma.AppointmentUncheckedUpdateWithoutPaymentInput>
 }
 
+export type AppointmentCreateNestedOneWithoutReviewInput = {
+  create?: Prisma.XOR<Prisma.AppointmentCreateWithoutReviewInput, Prisma.AppointmentUncheckedCreateWithoutReviewInput>
+  connectOrCreate?: Prisma.AppointmentCreateOrConnectWithoutReviewInput
+  connect?: Prisma.AppointmentWhereUniqueInput
+}
+
+export type AppointmentUpdateOneRequiredWithoutReviewNestedInput = {
+  create?: Prisma.XOR<Prisma.AppointmentCreateWithoutReviewInput, Prisma.AppointmentUncheckedCreateWithoutReviewInput>
+  connectOrCreate?: Prisma.AppointmentCreateOrConnectWithoutReviewInput
+  upsert?: Prisma.AppointmentUpsertWithoutReviewInput
+  connect?: Prisma.AppointmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AppointmentUpdateToOneWithWhereWithoutReviewInput, Prisma.AppointmentUpdateWithoutReviewInput>, Prisma.AppointmentUncheckedUpdateWithoutReviewInput>
+}
+
 export type AppointmentCreateNestedManyWithoutScheduleInput = {
   create?: Prisma.XOR<Prisma.AppointmentCreateWithoutScheduleInput, Prisma.AppointmentUncheckedCreateWithoutScheduleInput> | Prisma.AppointmentCreateWithoutScheduleInput[] | Prisma.AppointmentUncheckedCreateWithoutScheduleInput[]
   connectOrCreate?: Prisma.AppointmentCreateOrConnectWithoutScheduleInput | Prisma.AppointmentCreateOrConnectWithoutScheduleInput[]
@@ -623,10 +618,10 @@ export type AppointmentCreateWithoutClientInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
   schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
   consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
 }
 
@@ -639,8 +634,8 @@ export type AppointmentUncheckedCreateWithoutClientInput = {
   updatedAt?: Date | string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
@@ -683,7 +678,6 @@ export type AppointmentScalarWhereInput = {
   clientId?: Prisma.StringFilter<"Appointment"> | string
   lawyerId?: Prisma.StringFilter<"Appointment"> | string
   scheduleId?: Prisma.StringFilter<"Appointment"> | string
-  review?: Prisma.EnumReviewNullableFilter<"Appointment"> | $Enums.Review | null
 }
 
 export type AppointmentCreateWithoutConsultationNoteInput = {
@@ -693,10 +687,10 @@ export type AppointmentCreateWithoutConsultationNoteInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
   lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
   schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
 }
 
@@ -710,7 +704,7 @@ export type AppointmentUncheckedCreateWithoutConsultationNoteInput = {
   clientId: string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
@@ -737,10 +731,10 @@ export type AppointmentUpdateWithoutConsultationNoteInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
   lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
   schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -754,7 +748,7 @@ export type AppointmentUncheckedUpdateWithoutConsultationNoteInput = {
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -765,10 +759,10 @@ export type AppointmentCreateWithoutLawyerInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
   schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
   consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
 }
 
@@ -781,8 +775,8 @@ export type AppointmentUncheckedCreateWithoutLawyerInput = {
   updatedAt?: Date | string
   clientId: string
   scheduleId: string
-  review?: $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
@@ -819,11 +813,11 @@ export type AppointmentCreateWithoutPaymentInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
   lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
   schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
   consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
 }
 
 export type AppointmentUncheckedCreateWithoutPaymentInput = {
@@ -836,8 +830,8 @@ export type AppointmentUncheckedCreateWithoutPaymentInput = {
   clientId: string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
 export type AppointmentCreateOrConnectWithoutPaymentInput = {
@@ -863,11 +857,11 @@ export type AppointmentUpdateWithoutPaymentInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
   lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
   schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
   consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
 }
 
 export type AppointmentUncheckedUpdateWithoutPaymentInput = {
@@ -880,8 +874,80 @@ export type AppointmentUncheckedUpdateWithoutPaymentInput = {
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
+}
+
+export type AppointmentCreateWithoutReviewInput = {
+  id?: string
+  videoCallingId: string
+  status?: $Enums.AppointmentStatus
+  paymentStatus?: $Enums.PaymentStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
+  lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutAppointmentsInput
+  consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
+}
+
+export type AppointmentUncheckedCreateWithoutReviewInput = {
+  id?: string
+  videoCallingId: string
+  status?: $Enums.AppointmentStatus
+  paymentStatus?: $Enums.PaymentStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  clientId: string
+  lawyerId: string
+  scheduleId: string
+  consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
+}
+
+export type AppointmentCreateOrConnectWithoutReviewInput = {
+  where: Prisma.AppointmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AppointmentCreateWithoutReviewInput, Prisma.AppointmentUncheckedCreateWithoutReviewInput>
+}
+
+export type AppointmentUpsertWithoutReviewInput = {
+  update: Prisma.XOR<Prisma.AppointmentUpdateWithoutReviewInput, Prisma.AppointmentUncheckedUpdateWithoutReviewInput>
+  create: Prisma.XOR<Prisma.AppointmentCreateWithoutReviewInput, Prisma.AppointmentUncheckedCreateWithoutReviewInput>
+  where?: Prisma.AppointmentWhereInput
+}
+
+export type AppointmentUpdateToOneWithWhereWithoutReviewInput = {
+  where?: Prisma.AppointmentWhereInput
+  data: Prisma.XOR<Prisma.AppointmentUpdateWithoutReviewInput, Prisma.AppointmentUncheckedUpdateWithoutReviewInput>
+}
+
+export type AppointmentUpdateWithoutReviewInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  videoCallingId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
+  lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
+  consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
+}
+
+export type AppointmentUncheckedUpdateWithoutReviewInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  videoCallingId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
+  consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
 export type AppointmentCreateWithoutScheduleInput = {
@@ -891,10 +957,10 @@ export type AppointmentCreateWithoutScheduleInput = {
   paymentStatus?: $Enums.PaymentStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  review?: $Enums.Review | null
   client: Prisma.ClientCreateNestedOneWithoutAppointmentsInput
   lawyer: Prisma.LawyerCreateNestedOneWithoutAppointmentsInput
   consultationNote?: Prisma.ConsultationNoteCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentCreateNestedOneWithoutAppointmentInput
 }
 
@@ -907,8 +973,8 @@ export type AppointmentUncheckedCreateWithoutScheduleInput = {
   updatedAt?: Date | string
   clientId: string
   lawyerId: string
-  review?: $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedCreateNestedOneWithoutAppointmentInput
+  review?: Prisma.ReviewUncheckedCreateNestedOneWithoutAppointmentInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutAppointmentInput
 }
 
@@ -947,7 +1013,6 @@ export type AppointmentCreateManyClientInput = {
   updatedAt?: Date | string
   lawyerId: string
   scheduleId: string
-  review?: $Enums.Review | null
 }
 
 export type AppointmentUpdateWithoutClientInput = {
@@ -957,10 +1022,10 @@ export type AppointmentUpdateWithoutClientInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
   schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
   consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -973,8 +1038,8 @@ export type AppointmentUncheckedUpdateWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -987,7 +1052,6 @@ export type AppointmentUncheckedUpdateManyWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
 }
 
 export type AppointmentCreateManyLawyerInput = {
@@ -999,7 +1063,6 @@ export type AppointmentCreateManyLawyerInput = {
   updatedAt?: Date | string
   clientId: string
   scheduleId: string
-  review?: $Enums.Review | null
 }
 
 export type AppointmentUpdateWithoutLawyerInput = {
@@ -1009,10 +1072,10 @@ export type AppointmentUpdateWithoutLawyerInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
   schedule?: Prisma.ScheduleUpdateOneRequiredWithoutAppointmentsNestedInput
   consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -1025,8 +1088,8 @@ export type AppointmentUncheckedUpdateWithoutLawyerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -1039,7 +1102,6 @@ export type AppointmentUncheckedUpdateManyWithoutLawyerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   scheduleId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
 }
 
 export type AppointmentCreateManyScheduleInput = {
@@ -1051,7 +1113,6 @@ export type AppointmentCreateManyScheduleInput = {
   updatedAt?: Date | string
   clientId: string
   lawyerId: string
-  review?: $Enums.Review | null
 }
 
 export type AppointmentUpdateWithoutScheduleInput = {
@@ -1061,10 +1122,10 @@ export type AppointmentUpdateWithoutScheduleInput = {
   paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   client?: Prisma.ClientUpdateOneRequiredWithoutAppointmentsNestedInput
   lawyer?: Prisma.LawyerUpdateOneRequiredWithoutAppointmentsNestedInput
   consultationNote?: Prisma.ConsultationNoteUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -1077,8 +1138,8 @@ export type AppointmentUncheckedUpdateWithoutScheduleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
   consultationNote?: Prisma.ConsultationNoteUncheckedUpdateOneWithoutAppointmentNestedInput
+  review?: Prisma.ReviewUncheckedUpdateOneWithoutAppointmentNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutAppointmentNestedInput
 }
 
@@ -1091,7 +1152,6 @@ export type AppointmentUncheckedUpdateManyWithoutScheduleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   lawyerId?: Prisma.StringFieldUpdateOperationsInput | string
-  review?: Prisma.NullableEnumReviewFieldUpdateOperationsInput | $Enums.Review | null
 }
 
 
@@ -1106,11 +1166,11 @@ export type AppointmentSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   clientId?: boolean
   lawyerId?: boolean
   scheduleId?: boolean
-  review?: boolean
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   lawyer?: boolean | Prisma.LawyerDefaultArgs<ExtArgs>
   schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
   consultationNote?: boolean | Prisma.Appointment$consultationNoteArgs<ExtArgs>
+  review?: boolean | Prisma.Appointment$reviewArgs<ExtArgs>
   payment?: boolean | Prisma.Appointment$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["appointment"]>
 
@@ -1124,7 +1184,6 @@ export type AppointmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   clientId?: boolean
   lawyerId?: boolean
   scheduleId?: boolean
-  review?: boolean
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   lawyer?: boolean | Prisma.LawyerDefaultArgs<ExtArgs>
   schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
@@ -1140,7 +1199,6 @@ export type AppointmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   clientId?: boolean
   lawyerId?: boolean
   scheduleId?: boolean
-  review?: boolean
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   lawyer?: boolean | Prisma.LawyerDefaultArgs<ExtArgs>
   schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
@@ -1156,15 +1214,15 @@ export type AppointmentSelectScalar = {
   clientId?: boolean
   lawyerId?: boolean
   scheduleId?: boolean
-  review?: boolean
 }
 
-export type AppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "videoCallingId" | "status" | "paymentStatus" | "createdAt" | "updatedAt" | "clientId" | "lawyerId" | "scheduleId" | "review", ExtArgs["result"]["appointment"]>
+export type AppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "videoCallingId" | "status" | "paymentStatus" | "createdAt" | "updatedAt" | "clientId" | "lawyerId" | "scheduleId", ExtArgs["result"]["appointment"]>
 export type AppointmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   lawyer?: boolean | Prisma.LawyerDefaultArgs<ExtArgs>
   schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
   consultationNote?: boolean | Prisma.Appointment$consultationNoteArgs<ExtArgs>
+  review?: boolean | Prisma.Appointment$reviewArgs<ExtArgs>
   payment?: boolean | Prisma.Appointment$paymentArgs<ExtArgs>
 }
 export type AppointmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1185,6 +1243,7 @@ export type $AppointmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     lawyer: Prisma.$LawyerPayload<ExtArgs>
     schedule: Prisma.$SchedulePayload<ExtArgs>
     consultationNote: Prisma.$ConsultationNotePayload<ExtArgs> | null
+    review: Prisma.$ReviewPayload<ExtArgs> | null
     payment: Prisma.$PaymentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1197,7 +1256,6 @@ export type $AppointmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     clientId: string
     lawyerId: string
     scheduleId: string
-    review: $Enums.Review | null
   }, ExtArgs["result"]["appointment"]>
   composites: {}
 }
@@ -1596,6 +1654,7 @@ export interface Prisma__AppointmentClient<T, Null = never, ExtArgs extends runt
   lawyer<T extends Prisma.LawyerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LawyerDefaultArgs<ExtArgs>>): Prisma.Prisma__LawyerClient<runtime.Types.Result.GetResult<Prisma.$LawyerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   schedule<T extends Prisma.ScheduleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScheduleDefaultArgs<ExtArgs>>): Prisma.Prisma__ScheduleClient<runtime.Types.Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   consultationNote<T extends Prisma.Appointment$consultationNoteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Appointment$consultationNoteArgs<ExtArgs>>): Prisma.Prisma__ConsultationNoteClient<runtime.Types.Result.GetResult<Prisma.$ConsultationNotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  review<T extends Prisma.Appointment$reviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Appointment$reviewArgs<ExtArgs>>): Prisma.Prisma__ReviewClient<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   payment<T extends Prisma.Appointment$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Appointment$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1635,7 +1694,6 @@ export interface AppointmentFieldRefs {
   readonly clientId: Prisma.FieldRef<"Appointment", 'String'>
   readonly lawyerId: Prisma.FieldRef<"Appointment", 'String'>
   readonly scheduleId: Prisma.FieldRef<"Appointment", 'String'>
-  readonly review: Prisma.FieldRef<"Appointment", 'Review'>
 }
     
 
@@ -2053,6 +2111,25 @@ export type Appointment$consultationNoteArgs<ExtArgs extends runtime.Types.Exten
    */
   include?: Prisma.ConsultationNoteInclude<ExtArgs> | null
   where?: Prisma.ConsultationNoteWhereInput
+}
+
+/**
+ * Appointment.review
+ */
+export type Appointment$reviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
 }
 
 /**

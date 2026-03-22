@@ -399,6 +399,7 @@ export const ModelName = {
   LawyerSchedules: 'LawyerSchedules',
   LegalDocument: 'LegalDocument',
   Payment: 'Payment',
+  Review: 'Review',
   Schedule: 'Schedule'
 } as const
 
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "practiceArea" | "admin" | "appointment" | "user" | "session" | "account" | "verification" | "client" | "clientProfile" | "consultationNote" | "lawyer" | "lawyerPracticeArea" | "lawyerSchedules" | "legalDocument" | "payment" | "schedule"
+    modelProps: "practiceArea" | "admin" | "appointment" | "user" | "session" | "account" | "verification" | "client" | "clientProfile" | "consultationNote" | "lawyer" | "lawyerPracticeArea" | "lawyerSchedules" | "legalDocument" | "payment" | "review" | "schedule"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1529,6 +1530,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Review: {
+      payload: Prisma.$ReviewPayload<ExtArgs>
+      fields: Prisma.ReviewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReviewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReviewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        findFirst: {
+          args: Prisma.ReviewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReviewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        findMany: {
+          args: Prisma.ReviewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>[]
+        }
+        create: {
+          args: Prisma.ReviewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        createMany: {
+          args: Prisma.ReviewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReviewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>[]
+        }
+        delete: {
+          args: Prisma.ReviewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        update: {
+          args: Prisma.ReviewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReviewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReviewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReviewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>[]
+        }
+        upsert: {
+          args: Prisma.ReviewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReviewPayload>
+        }
+        aggregate: {
+          args: Prisma.ReviewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReview>
+        }
+        groupBy: {
+          args: Prisma.ReviewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReviewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReviewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReviewCountAggregateOutputType> | number
+        }
+      }
+    }
     Schedule: {
       payload: Prisma.$SchedulePayload<ExtArgs>
       fields: Prisma.ScheduleFieldRefs
@@ -1681,8 +1756,7 @@ export const AppointmentScalarFieldEnum = {
   updatedAt: 'updatedAt',
   clientId: 'clientId',
   lawyerId: 'lawyerId',
-  scheduleId: 'scheduleId',
-  review: 'review'
+  scheduleId: 'scheduleId'
 } as const
 
 export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
@@ -1870,6 +1944,20 @@ export const PaymentScalarFieldEnum = {
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  appointmentId: 'appointmentId',
+  clientId: 'clientId',
+  lawyerId: 'lawyerId'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
 export const ScheduleScalarFieldEnum = {
   id: 'id',
   startDateTime: 'startDateTime',
@@ -1988,20 +2076,6 @@ export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'PaymentStatus[]'
  */
 export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Review'
- */
-export type EnumReviewFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Review'>
-    
-
-
-/**
- * Reference to a field of type 'Review[]'
- */
-export type ListEnumReviewFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Review[]'>
     
 
 
@@ -2198,6 +2272,7 @@ export type GlobalOmitConfig = {
   lawyerSchedules?: Prisma.LawyerSchedulesOmit
   legalDocument?: Prisma.LegalDocumentOmit
   payment?: Prisma.PaymentOmit
+  review?: Prisma.ReviewOmit
   schedule?: Prisma.ScheduleOmit
 }
 

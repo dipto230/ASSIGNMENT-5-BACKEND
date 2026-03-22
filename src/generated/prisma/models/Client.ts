@@ -235,6 +235,7 @@ export type ClientWhereInput = {
   legalDocuments?: Prisma.LegalDocumentListRelationFilter
   consultationNotes?: Prisma.ConsultationNoteListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type ClientOrderByWithRelationInput = {
@@ -254,6 +255,7 @@ export type ClientOrderByWithRelationInput = {
   legalDocuments?: Prisma.LegalDocumentOrderByRelationAggregateInput
   consultationNotes?: Prisma.ConsultationNoteOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -276,6 +278,7 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   legalDocuments?: Prisma.LegalDocumentListRelationFilter
   consultationNotes?: Prisma.ConsultationNoteListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "email" | "userId">
 
 export type ClientOrderByWithAggregationInput = {
@@ -328,6 +331,7 @@ export type ClientCreateInput = {
   legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
   user: Prisma.UserCreateNestedOneWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateInput = {
@@ -346,6 +350,7 @@ export type ClientUncheckedCreateInput = {
   profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientUpdateInput = {
@@ -364,6 +369,7 @@ export type ClientUpdateInput = {
   legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateInput = {
@@ -382,6 +388,7 @@ export type ClientUncheckedUpdateInput = {
   profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateManyInput = {
@@ -565,6 +572,20 @@ export type ClientUpdateOneRequiredWithoutLegalDocumentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutLegalDocumentsInput, Prisma.ClientUpdateWithoutLegalDocumentsInput>, Prisma.ClientUncheckedUpdateWithoutLegalDocumentsInput>
 }
 
+export type ClientCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutReviewsInput, Prisma.ClientUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.ClientWhereUniqueInput
+}
+
+export type ClientUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutReviewsInput, Prisma.ClientUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.ClientUpsertWithoutReviewsInput
+  connect?: Prisma.ClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutReviewsInput, Prisma.ClientUpdateWithoutReviewsInput>, Prisma.ClientUncheckedUpdateWithoutReviewsInput>
+}
+
 export type ClientCreateWithoutAppointmentsInput = {
   id?: string
   name: string
@@ -580,6 +601,7 @@ export type ClientCreateWithoutAppointmentsInput = {
   legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
   user: Prisma.UserCreateNestedOneWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutAppointmentsInput = {
@@ -597,6 +619,7 @@ export type ClientUncheckedCreateWithoutAppointmentsInput = {
   profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutAppointmentsInput = {
@@ -630,6 +653,7 @@ export type ClientUpdateWithoutAppointmentsInput = {
   legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutAppointmentsInput = {
@@ -647,6 +671,7 @@ export type ClientUncheckedUpdateWithoutAppointmentsInput = {
   profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutUserInput = {
@@ -664,6 +689,7 @@ export type ClientCreateWithoutUserInput = {
   profile?: Prisma.ClientProfileCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutUserInput = {
@@ -681,6 +707,7 @@ export type ClientUncheckedCreateWithoutUserInput = {
   profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutUserInput = {
@@ -714,6 +741,7 @@ export type ClientUpdateWithoutUserInput = {
   profile?: Prisma.ClientProfileUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutUserInput = {
@@ -731,6 +759,7 @@ export type ClientUncheckedUpdateWithoutUserInput = {
   profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutProfileInput = {
@@ -748,6 +777,7 @@ export type ClientCreateWithoutProfileInput = {
   legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
   user: Prisma.UserCreateNestedOneWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutProfileInput = {
@@ -765,6 +795,7 @@ export type ClientUncheckedCreateWithoutProfileInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutProfileInput = {
@@ -798,6 +829,7 @@ export type ClientUpdateWithoutProfileInput = {
   legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutProfileInput = {
@@ -815,6 +847,7 @@ export type ClientUncheckedUpdateWithoutProfileInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutConsultationNotesInput = {
@@ -832,6 +865,7 @@ export type ClientCreateWithoutConsultationNotesInput = {
   profile?: Prisma.ClientProfileCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
   user: Prisma.UserCreateNestedOneWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutConsultationNotesInput = {
@@ -849,6 +883,7 @@ export type ClientUncheckedCreateWithoutConsultationNotesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
   legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutConsultationNotesInput = {
@@ -882,6 +917,7 @@ export type ClientUpdateWithoutConsultationNotesInput = {
   profile?: Prisma.ClientProfileUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutConsultationNotesInput = {
@@ -899,6 +935,7 @@ export type ClientUncheckedUpdateWithoutConsultationNotesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
   legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutLegalDocumentsInput = {
@@ -916,6 +953,7 @@ export type ClientCreateWithoutLegalDocumentsInput = {
   profile?: Prisma.ClientProfileCreateNestedOneWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
   user: Prisma.UserCreateNestedOneWithoutClientInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutLegalDocumentsInput = {
@@ -933,6 +971,7 @@ export type ClientUncheckedCreateWithoutLegalDocumentsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutLegalDocumentsInput = {
@@ -966,6 +1005,7 @@ export type ClientUpdateWithoutLegalDocumentsInput = {
   profile?: Prisma.ClientProfileUpdateOneWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutLegalDocumentsInput = {
@@ -983,6 +1023,95 @@ export type ClientUncheckedUpdateWithoutLegalDocumentsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
   consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type ClientCreateWithoutReviewsInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  contactNumber?: string | null
+  address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
+  profile?: Prisma.ClientProfileCreateNestedOneWithoutClientInput
+  legalDocuments?: Prisma.LegalDocumentCreateNestedManyWithoutClientInput
+  consultationNotes?: Prisma.ConsultationNoteCreateNestedManyWithoutClientInput
+  user: Prisma.UserCreateNestedOneWithoutClientInput
+}
+
+export type ClientUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  contactNumber?: string | null
+  address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
+  profile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutClientInput
+  legalDocuments?: Prisma.LegalDocumentUncheckedCreateNestedManyWithoutClientInput
+  consultationNotes?: Prisma.ConsultationNoteUncheckedCreateNestedManyWithoutClientInput
+}
+
+export type ClientCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.ClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientCreateWithoutReviewsInput, Prisma.ClientUncheckedCreateWithoutReviewsInput>
+}
+
+export type ClientUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutReviewsInput, Prisma.ClientUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutReviewsInput, Prisma.ClientUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.ClientWhereInput
+}
+
+export type ClientUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.ClientWhereInput
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutReviewsInput, Prisma.ClientUncheckedUpdateWithoutReviewsInput>
+}
+
+export type ClientUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
+  profile?: Prisma.ClientProfileUpdateOneWithoutClientNestedInput
+  legalDocuments?: Prisma.LegalDocumentUpdateManyWithoutClientNestedInput
+  consultationNotes?: Prisma.ConsultationNoteUpdateManyWithoutClientNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
+  profile?: Prisma.ClientProfileUncheckedUpdateOneWithoutClientNestedInput
+  legalDocuments?: Prisma.LegalDocumentUncheckedUpdateManyWithoutClientNestedInput
+  consultationNotes?: Prisma.ConsultationNoteUncheckedUpdateManyWithoutClientNestedInput
 }
 
 
@@ -994,12 +1123,14 @@ export type ClientCountOutputType = {
   appointments: number
   legalDocuments: number
   consultationNotes: number
+  reviews: number
 }
 
 export type ClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   appointments?: boolean | ClientCountOutputTypeCountAppointmentsArgs
   legalDocuments?: boolean | ClientCountOutputTypeCountLegalDocumentsArgs
   consultationNotes?: boolean | ClientCountOutputTypeCountConsultationNotesArgs
+  reviews?: boolean | ClientCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -1033,6 +1164,13 @@ export type ClientCountOutputTypeCountConsultationNotesArgs<ExtArgs extends runt
   where?: Prisma.ConsultationNoteWhereInput
 }
 
+/**
+ * ClientCountOutputType without action
+ */
+export type ClientCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
 
 export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1051,6 +1189,7 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   legalDocuments?: boolean | Prisma.Client$legalDocumentsArgs<ExtArgs>
   consultationNotes?: boolean | Prisma.Client$consultationNotesArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  reviews?: boolean | Prisma.Client$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
@@ -1105,6 +1244,7 @@ export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   legalDocuments?: boolean | Prisma.Client$legalDocumentsArgs<ExtArgs>
   consultationNotes?: boolean | Prisma.Client$consultationNotesArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  reviews?: boolean | Prisma.Client$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1122,6 +1262,7 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     legalDocuments: Prisma.$LegalDocumentPayload<ExtArgs>[]
     consultationNotes: Prisma.$ConsultationNotePayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1534,6 +1675,7 @@ export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.T
   legalDocuments<T extends Prisma.Client$legalDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$legalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LegalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   consultationNotes<T extends Prisma.Client$consultationNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$consultationNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConsultationNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  reviews<T extends Prisma.Client$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2063,6 +2205,30 @@ export type Client$consultationNotesArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.ConsultationNoteScalarFieldEnum | Prisma.ConsultationNoteScalarFieldEnum[]
+}
+
+/**
+ * Client.reviews
+ */
+export type Client$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

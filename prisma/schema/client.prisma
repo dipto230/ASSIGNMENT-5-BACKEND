@@ -20,6 +20,7 @@ model Client {
   // relation
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    reviews Review[]
 
   @@index([email], name: "idx_client_email")
   @@index([isDeleted], name: "idx_client_isDeleted")
