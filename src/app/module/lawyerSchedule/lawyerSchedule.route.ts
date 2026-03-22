@@ -22,7 +22,7 @@ router.get(
 
 router.get(
   "/",
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN,Role.LAWYER),
   LawyerScheduleController.getAllLawyerSchedules
 );
 

@@ -7,6 +7,7 @@ import { AdminRoutes } from "../module/admin/admin.route";
 import { scheduleRoutes } from "../module/schedule/schedule.route";
 import { LawyerScheduleRoutes } from "../module/lawyerSchedule/lawyerSchedule.route";
 import { AppointmentRoutes } from "../module/appointment/appointment.routes";
+import { ClientRoutes } from "../module/client/client.routes";
 
 const router = Router()
 router.use("/auth", AuthRoutes)
@@ -17,5 +18,6 @@ router.use("/admins", AdminRoutes)
 router.use("/schedules", scheduleRoutes)
 router.use("/lawyer-schedules", LawyerScheduleRoutes)
 router.use("/appointments", AppointmentRoutes)
+router.use("/clients", ClientRoutes)
 
 export const IndexRoutes = router
