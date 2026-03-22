@@ -41,7 +41,7 @@ const updateReview = catchAsync(async (req: Request, res: Response) => {
     const user = req.user;
     const reviewId = req.params.id;
     const payload = req.body;
-    const result = await ReviewService.updateReview(user, reviewId, payload);
+    const result = await ReviewService.updateReview(user, reviewId as string, payload);
     sendResponse(res, {
         httpStatusCode: httpStatus.OK,
         success: true,
