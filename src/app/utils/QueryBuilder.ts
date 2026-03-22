@@ -235,7 +235,35 @@ export class QueryBuilder<
     return this;
   }
 
-  // 🔥 CUSTOM WHERE (TWhereInput use)
+dynamicInclude(includeConfig: Record<string, unknown>): this {
+  if (this.selectFields) {
+    return this;
+  }
+
+  const result: Record<string, unknown> = {};
+
+  const includeParam = this.queryParams.include as string | undefined;
+
+  if (includeParam && typeof includeParam === "string") {
+    const requested = includeParam.split(",").map((r) => r.trim());
+
+    requested.forEach((relation) => {
+      if (includeConfig[relation]) {
+        result[relation] = includeConfig[relation];
+      }
+    });
+  }
+
+  this.query.include = {
+    ...(this.query.include as Record<string, unknown>),
+    ...result,
+  };
+
+  return this;
+}
+
+
+  
   where(condition: TWhereInput): this {
     this.query.where = {
       ...(this.query.where as Record<string, unknown>),

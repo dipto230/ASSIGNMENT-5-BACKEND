@@ -3,12 +3,18 @@ import { PracticeAreaRoutes } from "../module/PracticeArea/practiceArea.route";
 import { AuthRoutes } from "../module/auth/auth.route";
 import { UserRoutes } from "../module/user/user.route";
 import { lawyerRoutes } from "../module/lawyer/lawyer.route";
+import { AdminRoutes } from "../module/admin/admin.route";
+import { scheduleRoutes } from "../module/schedule/schedule.route";
+import { LawyerScheduleRoutes } from "../module/lawyerSchedule/lawyerSchedule.route";
 
 const router = Router()
 router.use("/auth", AuthRoutes)
 router.use("/practiceArea", PracticeAreaRoutes)
-
 router.use("/users", UserRoutes)
 router.use("/lawyers", lawyerRoutes)
+router.use("/admins", AdminRoutes)
+router.use("/schedules", scheduleRoutes)
+router.use("/lawyer-schedules", LawyerScheduleRoutes)
+
 
 export const IndexRoutes = router

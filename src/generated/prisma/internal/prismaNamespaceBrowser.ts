@@ -315,10 +315,8 @@ export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeo
 
 export const ScheduleScalarFieldEnum = {
   id: 'id',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  startTime: 'startTime',
-  endTime: 'endTime',
+  startDateTime: 'startDateTime',
+  endDateTime: 'endDateTime',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
