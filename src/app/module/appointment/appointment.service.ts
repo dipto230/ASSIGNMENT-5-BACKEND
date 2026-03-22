@@ -27,7 +27,9 @@ const bookAppointment = async (payload: IBookAppointmentPayload, user: IRequestU
       },
     },
   });
-
+if (lawyerSchedule.isBooked) {
+  throw new AppError(status.BAD_REQUEST, "Schedule already booked");
+}
   const videoCallingId = String(uuidv7());
 
   const result = await prisma.$transaction(async (tx) => {
@@ -54,7 +56,8 @@ const bookAppointment = async (payload: IBookAppointmentPayload, user: IRequestU
       data: {
         appointmentId: appointment.id,
         amount: 0, // customize if needed
-        transactionId: String(uuidv7()),
+            transactionId: String(uuidv7()),
+          status: PaymentStatus.UNPAID,
       },
     });
 
@@ -151,10 +154,54 @@ const getAllAppointments = async () => {
   });
 };
 
+
+const cancelUnpaidAppointments = async () => {
+  const unpaidAppointments = await prisma.appointment.findMany({
+    where: {
+      status: AppointmentStatus.SCHEDULED,
+      createdAt: {
+        lte: new Date(Date.now() - 25 * 60 * 1000), // 25 minutes আগে
+      },
+      payment: {
+        status: PaymentStatus.UNPAID,
+      },
+    },
+    include: {
+      schedule: true,
+    },
+  });
+
+  const result = await prisma.$transaction(async (tx) => {
+    for (const appointment of unpaidAppointments) {
+    
+      await tx.appointment.update({
+        where: { id: appointment.id },
+        data: { status: AppointmentStatus.CANCELLED },
+      });
+
+      
+      await tx.lawyerSchedules.update({
+        where: {
+          lawyerId_scheduleId: {
+            lawyerId: appointment.lawyerId,
+            scheduleId: appointment.scheduleId,
+          },
+        },
+        data: { isBooked: false },
+      });
+    }
+  });
+
+  return result;
+};
+
+
+
 export const AppointmentService = {
   bookAppointment,
   getMyAppointments,
   getMySingleAppointment,
   changeAppointmentStatus,
-  getAllAppointments,
+    getAllAppointments,
+  cancelUnpaidAppointments
 };

@@ -74,5 +74,6 @@ const getSinglePayment = async (id: string) => {
 export const PaymentService = {
   createPayment,
   getAllPayments,
-  getSinglePayment,
+    getSinglePayment,
+  
 };

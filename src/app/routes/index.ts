@@ -6,6 +6,7 @@ import { lawyerRoutes } from "../module/lawyer/lawyer.route";
 import { AdminRoutes } from "../module/admin/admin.route";
 import { scheduleRoutes } from "../module/schedule/schedule.route";
 import { LawyerScheduleRoutes } from "../module/lawyerSchedule/lawyerSchedule.route";
+import { AppointmentRoutes } from "../module/appointment/appointment.routes";
 
 const router = Router()
 router.use("/auth", AuthRoutes)
@@ -15,6 +16,6 @@ router.use("/lawyers", lawyerRoutes)
 router.use("/admins", AdminRoutes)
 router.use("/schedules", scheduleRoutes)
 router.use("/lawyer-schedules", LawyerScheduleRoutes)
-
+router.use("/appointments", AppointmentRoutes)
 
 export const IndexRoutes = router
