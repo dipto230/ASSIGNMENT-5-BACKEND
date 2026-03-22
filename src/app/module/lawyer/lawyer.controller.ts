@@ -3,9 +3,10 @@ import status from "http-status";
 import { catchAsync } from "../../shared/catchAsync";
 import { LawyerService } from "./lawyer.service";
 import { sendResponse } from "../../shared/sendResponse";
+import { IQueryParams } from "../../interfaces/query.interface";
 
 const getAllLawyers = catchAsync(async (req: Request, res: Response) => {
-    const result = await LawyerService.getAllLawyers();
+    const result = await LawyerService.getAllLawyers(req.query as IQueryParams);
 
     sendResponse(res, {
         httpStatusCode: status.OK,
