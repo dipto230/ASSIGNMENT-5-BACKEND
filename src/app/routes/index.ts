@@ -9,6 +9,8 @@ import { LawyerScheduleRoutes } from "../module/lawyerSchedule/lawyerSchedule.ro
 import { AppointmentRoutes } from "../module/appointment/appointment.routes";
 import { ClientRoutes } from "../module/client/client.routes";
 import { ReviewRoutes } from "../module/review/review.route";
+import { PaymentRoutes } from "../module/payment/payment.route";
+import { StatsRoutes } from "../module/stats/stats.routes";
 
 const router = Router()
 router.use("/auth", AuthRoutes)
@@ -21,5 +23,8 @@ router.use("/lawyer-schedules", LawyerScheduleRoutes)
 router.use("/appointments", AppointmentRoutes)
 router.use("/clients", ClientRoutes)
 router.use("/reviews", ReviewRoutes)
+router.use("/payments", PaymentRoutes)
+router.use("/stats", StatsRoutes)
+
 
 export const IndexRoutes = router
