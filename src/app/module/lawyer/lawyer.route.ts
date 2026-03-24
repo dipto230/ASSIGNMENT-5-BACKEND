@@ -10,23 +10,23 @@ import { updateLawyerZodSchema } from "./lawyer.validation";
 const router = Router();
 
 router.get("/",
-    checkAuth(Role.ADMIN, Role.SUPER_ADMIN,Role.USER),
+    
     LawyerController.getAllLawyers
 );
 
 router.get("/:id",
-    checkAuth(Role.ADMIN, Role.SUPER_ADMIN,Role.USER),
+    
     LawyerController.getLawyerById
 );
 
 router.patch("/:id",
-    checkAuth(Role.ADMIN, Role.SUPER_ADMIN,Role.USER),
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
     validateRequest(updateLawyerZodSchema),
     LawyerController.updateLawyer
 );
 
 router.delete("/:id",
-    checkAuth(Role.ADMIN, Role.SUPER_ADMIN,Role.USER),
+    checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
     LawyerController.deleteLawyer
 );
 

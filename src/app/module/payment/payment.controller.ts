@@ -3,6 +3,8 @@ import status from "http-status";
 import { catchAsync } from "../../shared/catchAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import { PaymentService } from "./payment.service";
+import { envVars } from "../../../config/env";
+import { stripe } from "../../../config/stripe.config";
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
   const result = await PaymentService.createPayment(req.body);
@@ -37,8 +39,28 @@ const getSinglePayment = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+const handleStripeWebhookEvent = catchAsync(async (req, res) => {
+  const sig = req.headers["stripe-signature"] as string;
+
+  const event = stripe.webhooks.constructEvent(
+    req.body,
+    sig,
+    envVars.STRIPE.STRIPE_WEBHOOK_SECRET
+  );
+
+  const result = await PaymentService.handleStripeWebhookEvent(event);
+
+  sendResponse(res, {
+    success: true,
+    httpStatusCode: 200,
+    message: "Webhook handled",
+    data: result,
+  });
+});
 export const PaymentController = {
   createPayment,
   getAllPayments,
   getSinglePayment,
+  handleStripeWebhookEvent
 };

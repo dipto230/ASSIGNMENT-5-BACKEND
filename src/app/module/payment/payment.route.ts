@@ -16,4 +16,10 @@ router.get("/", PaymentController.getAllPayments);
 
 router.get("/:id", PaymentController.getSinglePayment);
 
+router.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  PaymentController.handleStripeWebhookEvent
+);
+
 export const PaymentRoutes = router;

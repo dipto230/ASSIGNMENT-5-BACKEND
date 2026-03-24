@@ -5,8 +5,13 @@ import { IRequestUser } from "../../interfaces/requestUser.interface";
 import { IBookAppointmentPayload } from "./appointment.interface";
 import { AppointmentStatus, PaymentStatus, Role } from "../../../generated/prisma/enums";
 import AppError from "../../errorHelpers/AppError";
+import { envVars } from "../../../config/env";
+import { stripe } from "../../../config/stripe.config";
 
-const bookAppointment = async (payload: IBookAppointmentPayload, user: IRequestUser) => {
+const bookAppointment = async (
+  payload: IBookAppointmentPayload,
+  user: IRequestUser
+) => {
   const clientData = await prisma.client.findUniqueOrThrow({
     where: { email: user.email },
   });
@@ -27,12 +32,15 @@ const bookAppointment = async (payload: IBookAppointmentPayload, user: IRequestU
       },
     },
   });
-if (lawyerSchedule.isBooked) {
-  throw new AppError(status.BAD_REQUEST, "Schedule already booked");
-}
+
+  if (lawyerSchedule.isBooked) {
+    throw new AppError(status.BAD_REQUEST, "Schedule already booked");
+  }
+
   const videoCallingId = String(uuidv7());
 
   const result = await prisma.$transaction(async (tx) => {
+    // ✅ appointment create
     const appointment = await tx.appointment.create({
       data: {
         clientId: clientData.id,
@@ -42,6 +50,7 @@ if (lawyerSchedule.isBooked) {
       },
     });
 
+    // ✅ schedule lock
     await tx.lawyerSchedules.update({
       where: {
         lawyerId_scheduleId: {
@@ -52,16 +61,46 @@ if (lawyerSchedule.isBooked) {
       data: { isBooked: true },
     });
 
+    // ✅ payment create
     const payment = await tx.payment.create({
       data: {
         appointmentId: appointment.id,
-        amount: 0, // customize if needed
-            transactionId: String(uuidv7()),
-          status: PaymentStatus.UNPAID,
+        amount: lawyerData.consultationFee,
+        transactionId: String(uuidv7()),
+        status: PaymentStatus.UNPAID,
       },
     });
 
-    return { appointment, payment };
+    // ✅ stripe session (correct place)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name: `Consultation with ${lawyerData.name}`,
+            },
+            unit_amount: lawyerData.consultationFee * 100,
+          },
+          quantity: 1,
+        },
+      ],
+      metadata: {
+        appointmentId: appointment.id,
+        paymentId: payment.id,
+      },
+      success_url: `${envVars.FRONTEND_URL}/payment-success`,
+      cancel_url: `${envVars.FRONTEND_URL}/appointments`,
+    });
+
+    // ✅ return same + paymentUrl
+    return {
+      appointment,
+      payment,
+      paymentUrl: session.url,
+    };
   });
 
   return result;

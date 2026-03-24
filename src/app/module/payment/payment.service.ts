@@ -71,9 +71,38 @@ const getSinglePayment = async (id: string) => {
   return payment;
 };
 
+const handleStripeWebhookEvent = async (event: any) => {
+
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object;
+
+    const appointmentId = session.metadata.appointmentId;
+    const paymentId = session.metadata.paymentId;
+
+    await prisma.payment.update({
+      where: { id: paymentId },
+      data: {
+        status: PaymentStatus.PAID,
+        paymentGatewayData: session,
+      },
+    });
+
+    await prisma.appointment.update({
+      where: { id: appointmentId },
+      data: {
+        paymentStatus: PaymentStatus.PAID,
+      },
+    });
+
+    // 👉 ekhane invoice generate + email add korte parba later
+  }
+
+  return { message: "ok" };
+};
 export const PaymentService = {
   createPayment,
   getAllPayments,
-    getSinglePayment,
+  getSinglePayment,
+    handleStripeWebhookEvent
   
 };

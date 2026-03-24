@@ -110,7 +110,11 @@ const getAllLawyerSchedules = async (query: IQueryParams) => {
     .search()
     .filter()
     .paginate()
+        .include({
+      schedule: true, 
+    })
     .dynamicInclude(lawyerScheduleIncludeConfig)
+
     .sort()
     .execute();
 };
