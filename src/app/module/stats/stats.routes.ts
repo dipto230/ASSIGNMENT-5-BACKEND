@@ -11,4 +11,10 @@ router.get(
     StatsController.getDashboardStatsData
 );
 
+router.get(
+    "/lawyer",
+    checkAuth(Role.LAWYER),
+    StatsController.getDashboardStatsData  
+);
+
 export const StatsRoutes = router;

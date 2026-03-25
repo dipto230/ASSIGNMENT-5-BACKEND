@@ -11,6 +11,7 @@ import { ClientRoutes } from "../module/client/client.routes";
 import { ReviewRoutes } from "../module/review/review.route";
 import { PaymentRoutes } from "../module/payment/payment.route";
 import { StatsRoutes } from "../module/stats/stats.routes";
+import { ConsultationNoteRoutes } from "../module/ConsultationNote/consultationNote.routes";
 
 const router = Router()
 router.use("/auth", AuthRoutes)
@@ -25,6 +26,7 @@ router.use("/clients", ClientRoutes)
 router.use("/reviews", ReviewRoutes)
 router.use("/payments", PaymentRoutes)
 router.use("/stats", StatsRoutes)
+router.use("/consultation-notes", ConsultationNoteRoutes);
 
 
 export const IndexRoutes = router

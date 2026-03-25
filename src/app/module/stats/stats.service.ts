@@ -11,6 +11,7 @@ const getDashboardStatsData = async (user: IRequestUser) => {
         case Role.USER:
             return getClientStatsData(user);
         case Role.ADMIN:
+        case Role.SUPER_ADMIN:
             return getAdminStatsData();
         default:
             throw new AppError(status.BAD_REQUEST, "Invalid user role");
@@ -19,7 +20,7 @@ const getDashboardStatsData = async (user: IRequestUser) => {
 
 const getLawyerStatsData = async (user: IRequestUser) => {
     const lawyer = await prisma.lawyer.findUniqueOrThrow({
-        where: { userId: user.id },
+        where: { userId: user.userId  },
         include: { appointments: true, consultationNotes: true }
     });
 
@@ -48,7 +49,7 @@ const getLawyerStatsData = async (user: IRequestUser) => {
 
 const getClientStatsData = async (user: IRequestUser) => {
     const client = await prisma.client.findUniqueOrThrow({
-        where: { userId: user.id },
+        where: { userId: user.userId  },
         include: { appointments: true }
     });
 
