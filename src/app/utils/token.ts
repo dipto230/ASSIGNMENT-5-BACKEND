@@ -32,6 +32,7 @@ const setAccessTokenCookie = (res: Response, token: string) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        domain: ".vercel.app",
         path: '/',
         //1 day
         maxAge: 60 * 60 * 60 * 24,
@@ -43,6 +44,7 @@ const setRefreshTokenCookie = (res: Response, token: string) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        domain: ".vercel.app",
         path: '/',
         //7d
         maxAge: 60 * 60 * 60 * 24 * 7,
@@ -54,6 +56,7 @@ const setBetterAuthSessionCookie = (res: Response, token: string) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        domain: ".vercel.app",
         path: '/',
         //1 day
         maxAge: 60 * 60 * 60 * 24,
