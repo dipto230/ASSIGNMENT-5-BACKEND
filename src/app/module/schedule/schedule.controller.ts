@@ -36,7 +36,7 @@ const getAllSchedules = catchAsync(async (req: Request, res: Response) => {
 const getScheduleById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const result = await ScheduleService.getScheduleById(id);
+  const result = await ScheduleService.getScheduleById(id as string);
 
   sendResponse(res, {
     success: true,
@@ -50,7 +50,7 @@ const updateSchedule = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const payload = req.body;
 
-  const result = await ScheduleService.updateSchedule(id, payload);
+  const result = await ScheduleService.updateSchedule(id as string, payload);
 
   sendResponse(res, {
     success: true,
@@ -63,7 +63,7 @@ const updateSchedule = catchAsync(async (req: Request, res: Response) => {
 const deleteSchedule = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const result = await ScheduleService.deleteSchedule(id);
+  const result = await ScheduleService.deleteSchedule(id as string);
 
   sendResponse(res, {
     success: true,

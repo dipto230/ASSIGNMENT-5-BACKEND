@@ -54,19 +54,11 @@ cron.schedule("*/25 * * * *", async () => {
 
 app.use("/api/v1", IndexRoutes);
 
-// Basic route
 app.get('/', async (req: Request, res: Response) => {
-
-    const PracticeArea = await prisma.practiceArea.create({
-        data: {
-            title: 'Criminal Law'
-        }
-    })
-    res.status(201).json({
+    res.status(200).json({
         success: true,
-        message: 'API is working',
-        data: PracticeArea
-    })
+        message: 'API is working'
+    });
 });
 
 // app.use(globalErrorHandler)
