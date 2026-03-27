@@ -9,10 +9,14 @@ import { CookieUtils } from "../utils/cookie";
 import { jwtUtils } from "../utils/jwt";
 import { envVars } from "../../config/env";
 
+
+
 export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Response, next: NextFunction) => {
     try {
+        console.log("🔥 checkAuth middleware HIT");
         
         const sessionToken = CookieUtils.getCookie(req, "better-auth.session_token");
+        console.log("Session Token:", sessionToken);
 
         if (!sessionToken) {
             throw new Error('Unauthorized access! No session token provided.');
@@ -30,6 +34,7 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
                     user: true,
                 }
             })
+            console.log("Session Exists:", sessionExists);
 
             if (sessionExists && sessionExists.user) {
                 const user = sessionExists.user;
@@ -70,6 +75,7 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
             }
 
             const accessToken = CookieUtils.getCookie(req, 'accessToken');
+            console.log("Access Token (1):", accessToken);
 
             if (!accessToken) {
                 throw new AppError(status.UNAUTHORIZED, 'Unauthorized access! No access token provided.');
@@ -80,12 +86,14 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
 
         //Access Token Verification
         const accessToken = CookieUtils.getCookie(req, 'accessToken');
+        console.log("Access Token (2):", accessToken);
 
         if (!accessToken) {
             throw new AppError(status.UNAUTHORIZED, 'Unauthorized access! No access token provided.');
         }
 
         const verifiedToken = jwtUtils.verifyToken(accessToken, envVars.ACCESS_TOKEN_SECRET);
+        console.log("🔥 ACCESS_TOKEN_SECRET:", envVars.ACCESS_TOKEN_SECRET);
 
         if (!verifiedToken.success) {
             throw new AppError(status.UNAUTHORIZED, 'Unauthorized access! Invalid access token.');
