@@ -7,7 +7,7 @@ import { sendEmail } from "../utils/email";
 import { envVars } from "../../config/env";
 
 export const auth = betterAuth({
-     baseURL: envVars.BETTER_AUTH_URL,
+    baseURL: envVars.BETTER_AUTH_URL,
     secret: envVars.BETTER_AUTH_SECRET,
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
@@ -15,59 +15,55 @@ export const auth = betterAuth({
 
     emailAndPassword: {
         enabled: true,
-         requireEmailVerification: true,
+        requireEmailVerification: true,
     },
 
-     socialProviders:{
-        google:{
+    socialProviders: {
+        google: {
             clientId: envVars.GOOGLE_CLIENT_ID,
             clientSecret: envVars.GOOGLE_CLIENT_SECRET,
             // callbackUrl: envVars.GOOGLE_CALLBACK_URL,
-            mapProfileToUser: ()=>{
+            mapProfileToUser: () => {
                 return {
-                    role : Role.USER,
-                    status : UserStatus.ACTIVE,
-                    needPasswordChange : false,
-                    emailVerified : true,
-                    isDeleted : false,
-                    deletedAt : null,
+                    role: Role.USER,
+                    status: UserStatus.ACTIVE,
+                    needPasswordChange: false,
+                    emailVerified: true,
+                    isDeleted: false,
+                    deletedAt: null,
                 }
             }
         }
     },
 
-
-     emailVerification:{
+    emailVerification: {
         sendOnSignUp: true,
         sendOnSignIn: true,
         autoSignInAfterVerification: true,
     },
-      user: {
+
+    user: {
         additionalFields: {
             role: {
                 type: "string",
                 required: true,
                 defaultValue: Role.USER
             },
-
             status: {
                 type: "string",
                 required: true,
                 defaultValue: UserStatus.ACTIVE
             },
-
             needPasswordChange: {
                 type: "boolean",
                 required: true,
                 defaultValue: false
             },
-
             isDeleted: {
                 type: "boolean",
                 required: true,
                 defaultValue: false
             },
-
             deletedAt: {
                 type: "date",
                 required: false,
@@ -75,86 +71,81 @@ export const auth = betterAuth({
             },
         }
     },
+
     plugins: [
         bearer(),
-          emailOTP({
+        emailOTP({
             overrideDefaultEmailVerification: true,
-            async sendVerificationOTP({email, otp, type}) {
-                if(type === "email-verification"){
-                  const user = await prisma.user.findUnique({
-                    where : {
-                        email,
-                    }
-                  })
-                  
-                  if(user && !user.emailVerified){
-                    sendEmail({
-                        to : email,
-                        subject : "Verify your email",
-                        templateName : "otp",
-                        templateData :{
-                            name : user.name,
-                            otp,
-                        }
-                    })
-                  }
-                }else if(type === "forget-password"){
+            async sendVerificationOTP({ email, otp, type }) {
+                if (type === "email-verification") {
                     const user = await prisma.user.findUnique({
-                        where : {
-                            email,
-                        }
+                        where: { email }
                     })
-
-                    if(user){
+                    if (user && !user.emailVerified) {
                         sendEmail({
-                            to : email,
-                            subject : "Password Reset OTP",
-                            templateName : "otp",
-                            templateData :{
-                                name : user.name,
-                                otp,
-                            }
+                            to: email,
+                            subject: "Verify your email",
+                            templateName: "otp",
+                            templateData: { name: user.name, otp },
+                        })
+                    }
+                } else if (type === "forget-password") {
+                    const user = await prisma.user.findUnique({
+                        where: { email }
+                    })
+                    if (user) {
+                        sendEmail({
+                            to: email,
+                            subject: "Password Reset OTP",
+                            templateName: "otp",
+                            templateData: { name: user.name, otp },
                         })
                     }
                 }
             },
-            expiresIn : 2 * 60, 
-            otpLength : 6,
+            expiresIn: 2 * 60,
+            otpLength: 6,
         })
-      ],
-       session: {
-        expiresIn: 60 * 60 * 60 * 24, 
-        updateAge: 60 * 60 * 60 * 24, 
+    ],
+
+    session: {
+        expiresIn: 60 * 60 * 60 * 24,
+        updateAge: 60 * 60 * 60 * 24,
         cookieCache: {
             enabled: true,
-            maxAge: 60 * 60 * 60 * 24, 
+            maxAge: 60 * 60 * 60 * 24,
         }
-    },
-        redirectURLs:{
-        signIn : `${envVars.BETTER_AUTH_URL}/api/v1/auth/google/success`,
     },
 
-    trustedOrigins: [process.env.BETTER_AUTH_URL || "http://localhost:5000", envVars.FRONTEND_URL],
-        advanced: {
-        // disableCSRFCheck: true,
-        useSecureCookies : false,
-        cookies:{
-            state:{
-                attributes:{
-                    sameSite: "none",
-                    secure: true,
+    redirectURLs: {
+        signIn: `${envVars.BETTER_AUTH_URL}/api/v1/auth/google/success`,
+    },
+
+    trustedOrigins: [process.env.FRONTEND_URL || "http://localhost:5000", envVars.FRONTEND_URL],
+
+    advanced: {
+         //useSecureCookies: true,
+        cookies: {
+            session_token: {
+                name: "better-auth.session_token",
+                attributes: {
                     httpOnly: true,
+                    secure: true,
+                    sameSite: "none",
+                    partitioned: true,
                     path: "/",
-                }
+                },
             },
-            sessionToken:{
-                attributes:{
-                    sameSite: "none",
-                    secure: true,
+            state: {
+                name: "better-auth.state",
+                attributes: {
                     httpOnly: true,
+                    secure: true,
+                    sameSite: "none",
+                    partitioned: true,
                     path: "/",
-                }
-            }
-        }
+                },
+            },
+        },
     }
-})
+});
