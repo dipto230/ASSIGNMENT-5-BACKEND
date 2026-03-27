@@ -14,6 +14,7 @@ import { envVars } from "../../config/env";
 export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log("🔥 checkAuth middleware HIT");
+        console.log("🍪 RAW COOKIE HEADER:", req.headers.cookie);
         
         const sessionToken = CookieUtils.getCookie(req, "better-auth.session_token");
         console.log("Session Token:", sessionToken);
