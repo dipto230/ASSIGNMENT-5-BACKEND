@@ -302,13 +302,25 @@ const changePassword = async (payload : IChangePasswordPayload, sessionToken : s
 }
 
 const logoutUser = async (sessionToken : string) => {
-    const result = await auth.api.signOut({
-        headers : new Headers({
-            Authorization : `Bearer ${sessionToken}`
-        })
-    })
+    try {
+        if (!sessionToken) {
+            console.warn("⚠️ No session token provided for logout");
+            return { success: true };
+        }
 
-    return result;
+        const result = await auth.api.signOut({
+            headers : new Headers({
+                Authorization : `Bearer ${sessionToken}`
+            })
+        })
+        
+        console.log("✅ Better-auth signOut successful");
+        return result;
+    } catch (error) {
+        console.error("❌ Better-auth signOut error:", error);
+        // Still return success since we'll clear cookies on the frontend anyway
+        return { success: true };
+    }
 }
 
 

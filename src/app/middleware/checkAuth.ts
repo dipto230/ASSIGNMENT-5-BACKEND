@@ -14,12 +14,18 @@ export const checkAuth =
     try {
       console.log("🔥 checkAuth middleware HIT");
       console.log("🍪 RAW COOKIE HEADER:", req.headers.cookie);
+      console.log("🔐 RAW AUTH HEADER:", req.headers.authorization);
 
       const sessionToken = CookieUtils.getCookie(
         req,
         "better-auth.session_token"
       );
-      const accessToken = CookieUtils.getCookie(req, "accessToken");
+      
+      // 🔐 Try to get accessToken from cookies OR Authorization header
+      let accessToken = CookieUtils.getCookie(req, "accessToken");
+      if (!accessToken && req.headers.authorization?.startsWith("Bearer ")) {
+        accessToken = req.headers.authorization.split(" ")[1];
+      }
 
       console.log("Session Token:", sessionToken);
       console.log("Access Token:", accessToken);
