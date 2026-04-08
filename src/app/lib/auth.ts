@@ -7,7 +7,7 @@ import { sendEmail } from "../utils/email";
 import { envVars } from "../../config/env";
 
 export const auth = betterAuth({
-  baseURL: envVars.FRONTEND_URL,
+  baseURL: envVars.BETTER_AUTH_URL,
   secret: envVars.BETTER_AUTH_SECRET,
 
   trustedOrigins: [

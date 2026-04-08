@@ -37,7 +37,8 @@ interface EnvConfig{
         STRIPE_WEBHOOK_SECRET: string;
     },
     SUPER_ADMIN_EMAIL: string;
-    SUPER_ADMIN_PASSWORD: string;
+  SUPER_ADMIN_PASSWORD: string;
+  OPENROUTER_API_KEY: string;
 
 }
 
@@ -71,6 +72,7 @@ const loadEnvVariables = (): EnvConfig => {
           'STRIPE_WEBHOOK_SECRET',
           'SUPER_ADMIN_EMAIL',
         'SUPER_ADMIN_PASSWORD',
+        'OPENROUTER_API_KEY',
 
          
 
@@ -122,7 +124,8 @@ const loadEnvVariables = (): EnvConfig => {
             STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string,
         },
           SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL as string,
-        SUPER_ADMIN_PASSWORD: process.env.SUPER_ADMIN_PASSWORD as string,
+      SUPER_ADMIN_PASSWORD: process.env.SUPER_ADMIN_PASSWORD as string,
+        OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY as string,
 
             
             
